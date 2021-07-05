@@ -9,31 +9,72 @@ html {
   box-sizing: border-box;
 }
 
-.getStarted{
-  width: 100%;
-  height: 100%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
 
-.slides{
-  width: 100%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  overflow: hidden;
+
+.slides {
+  max-width: 100%;
+  height: 50rem;
+  margin: 0 auto;
   position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  align-items: center;
+  /* IN THE END */
+  overflow: hidden;
 }
 
-.slide{
+.slide {
+  position: absolute;
+  top: 0;
   width: 100%;
-  height: 70%;
-  transition: transform ease-in-out 1s;
+  height: 40rem;
+  margin: auto auto;
+  display: grid;
+  direction: row;
+  grid-template-columns: auto;
+  grid-template-rows: auto auto auto;
+  justify-items: center;
+  align-content: center;
+  justify-content: center;
+  /* THIS creates the animation! */
+  transition: transform 1s;
 }
 
 .getStarted--img{
-  width:100%;
-  height: 50%;
+  margin-top: 5rem;
+  grid-row: 1/2;
+  height: 70%;
+  width: 40%;
 }
 
+.getStarted--caption{
+  font-family: 'Hind Siliguri', sans-serif;
+  font-size: 3rem;
+  font-weight: 900;
+  grid-row: 2/3;
+}
+
+.dots__dot{
+  background: none;
+  border: none;
+  color: black;
+  font-size: 2rem;
+  font-weight: 900;
+}
+
+.dots__dot--active{
+  color: rgb(143, 138, 138);
+}
+
+.head-start{
+  font-family: 'Hind Siliguri', sans-serif;
+  margin: 5px 40.3%;
+  padding: 5px;
+  font-size: 5rem;
+  color: white;
+  background: rgb(17, 80, 131);
+  border-radius: 2rem;
+  border: double 2px rgb(129, 163, 207);
+  box-shadow: 2px 2px 3px black;
+}
