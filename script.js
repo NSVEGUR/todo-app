@@ -4,8 +4,11 @@ const slides = document.querySelectorAll('.slide');
 const dotContainer = document.querySelector('.dots');
 const getStarted = document.querySelector('.getStarted');
 const getStartedBtn = document.querySelector('.head-start');
+const main = document.querySelector('main');
+const right = document.querySelector('.right');
+const left = document.querySelector('.left');
 
-
+// //Creating splash screen
 const splash = document.querySelector('.splash');
 
 if (sessionStorage.isVisited)
@@ -22,75 +25,106 @@ if (!sessionStorage.isVisited) {
   });
 }
 
+//creating dots
 
-const createDots = function () {
-  slides.forEach(function (_, i) {
-    dotContainer.insertAdjacentHTML(
-      'beforeend',
-      `<button class="dots__dot" data-slide="${i}">•</button>`
-    );
-  });
-};
+const slider = function () {
+  const createDots = function () {
+    slides.forEach(function (_, i) {
+      dotContainer.insertAdjacentHTML(
+        'beforeend',
+        `<button class="dots__dot" data-slide="${i}">•</button>`
+      );
+    });
+  };
 
-createDots();
+  createDots();
 
-let currentSlide = 0;
-
-document
-  .querySelector(`.dots__dot[data-slide="${currentSlide}"]`)
-  .classList.add('dots__dot--active');
-
-let flag = 1;
-
-
-
-const moveForward = function (slide) {
-  slides.forEach(
-    (s, i) => (s.style.transform = `translateX(${100 * (i - slide)}%)`)
-  );
+  let currentSlide = 0;
 
   document
-    .querySelectorAll('.dots__dot')
-    .forEach(dot => dot.classList.remove('dots__dot--active'));
-
-  document
-    .querySelector(`.dots__dot[data-slide="${slide}"]`)
+    .querySelector(`.dots__dot[data-slide="${currentSlide}"]`)
     .classList.add('dots__dot--active');
 
-};
+  let flag = 1;
 
-if (!sessionStorage.isVisited) {
-  setTimeout(() => {
-    moveForward(currentSlide);
-    ++currentSlide;
 
-    setInterval(() => {
 
-      if (currentSlide !== 3) {
-        moveForward(currentSlide);
-        ++currentSlide;
-      }
+  //slider creation
 
-      if (currentSlide === 3) currentSlide = 0;
+  const goTo = function (slide) {
+    slides.forEach(
+      (s, i) => (s.style.transform = `translateX(${100 * (i - slide)}%)`)
+    );
 
-    }, 2300);
-  }, 3500);
-} else {
-  moveForward(currentSlide);
-  ++currentSlide;
+    document
+      .querySelectorAll('.dots__dot')
+      .forEach(dot => dot.classList.remove('dots__dot--active'));
 
-  setInterval(() => {
+    document
+      .querySelector(`.dots__dot[data-slide="${slide}"]`)
+      .classList.add('dots__dot--active');
 
-    if (currentSlide !== 3) {
-      moveForward(currentSlide);
+  };
+
+  const nextSlide = function () {
+    if (currentSlide < 2) {
       ++currentSlide;
+      goTo(currentSlide);
     }
+    else if (currentSlide === 2) {
+      currentSlide = 0;
+      goTo(currentSlide);
+    }
+  }
 
-    if (currentSlide === 3) currentSlide = 0;
+  const prevSlide = function () {
+    if (currentSlide > 0) {
+      --currentSlide;
+      goTo(currentSlide);
+    }
+    else if (currentSlide === 0) {
+      currentSlide = 2;
+      goTo(currentSlide);
+    }
+  }
 
-  }, 2300);
+  right.addEventListener('click', nextSlide);
+  left.addEventListener('click', prevSlide);
 }
+
+slider();
+
 getStartedBtn.addEventListener('click',
   () => {
     getStarted.style.display = 'none';
+    main.classList.remove('display-content');
   })
+
+
+getStarted.style.display = 'none';
+
+main.classList.remove('display-content');
+
+let task = '';
+let taskCount = 3;
+
+
+
+
+let html = `<div class="task task-1">Works to do</div>
+<div class="task task-2">List things</div>`;
+
+let addMore = `<input class="task task-add" type="text" value="Add more" onfocus='this.value = ""' />`;
+document.addEventListener('keydown',
+  (e) => {
+    if (e.key === 'Enter') {
+
+      task = document.querySelector('.task-add').value;
+
+      main.innerHTML = '';
+
+      html += `<div class="task task-${taskCount}">${task}</div>`;
+      ++taskCount;
+      main.insertAdjacentHTML("afterbegin", html + addMore);
+    }
+  });
