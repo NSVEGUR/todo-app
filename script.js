@@ -101,9 +101,7 @@ getStartedBtn.addEventListener('click',
   })
 
 
-getStarted.style.display = 'none';
 
-main.classList.remove('display-content');
 
 let task = '';
 let taskCount = 3;
