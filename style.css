@@ -125,7 +125,7 @@ animation: animate 10s linear forwards;
 .btn-slide.right{
   position: absolute;
   top: 50%;
-  right: 30%;
+  right: 10%;
   font-size: 2rem;
   color: black;
   background: rgba(148, 139, 139, 0.747);
@@ -137,7 +137,7 @@ animation: animate 10s linear forwards;
 .btn-slide.left{
   position: absolute;
   top: 50%;
-  left: 30%;
+  left: 10%;
   font-size: 2rem;
   color: black;
   background: rgba(148, 139, 139, 0.747);
@@ -194,7 +194,7 @@ main{
 }
 
 .task{
-  width: 30%;
+  width: 50%;
   height: 4rem;
   padding: 2rem -3rem;
   text-align: center;
