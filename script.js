@@ -98,6 +98,7 @@ getStartedBtn.addEventListener('click',
   () => {
     getStarted.style.display = 'none';
     main.classList.remove('display-content');
+    document.querySelector('.task-head').classList.remove('display-content');
   })
 
 

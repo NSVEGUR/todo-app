@@ -189,17 +189,25 @@ main{
   align-items: center;
 }
 
+.task-head{
+  background-image: linear-gradient(120deg, #a1c4fd 0%, #c2e9fb 100%);
+  padding: 2rem 2rem;
+  font-family: 'Comfortaa', cursive;
+  font-size: 3rem;
+  font-weight: 900;
+}
+
 .display-content{
   display: none;
 }
 
 .task{
   width: 50%;
-  height: 4rem;
-  padding: 2rem -3rem;
+  height: 5rem;
+  padding: 1rem;
   text-align: center;
-  color:rgb(143, 138, 138);
-  font-family: 'Hind Siliguri', sans-serif;
+  color:rgb(51, 50, 50);
+  font-family: 'Comfortaa', cursive;
   font-size: 3rem;
   font-weight: bold;
   margin: 1rem;
@@ -209,4 +217,9 @@ main{
   border: double 1px rgb(107, 102, 102);
   box-shadow: 2px 2px 3px black;
   cursor: pointer;
+}
+
+.task-add{
+  color:rgb(100, 95, 95);
+
 }
