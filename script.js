@@ -2,6 +2,9 @@
 
 const slides = document.querySelectorAll('.slide');
 const dotContainer = document.querySelector('.dots');
+const getStarted = document.querySelector('.getStarted');
+const getStartedBtn = document.querySelector('.head-start');
+
 
 
 slides.forEach((s, i) => {
@@ -44,6 +47,9 @@ const moveForward = function (slide) {
 
 };
 
+moveForward(currentSlide);
+++currentSlide;
+
 setInterval(() => {
 
   if (currentSlide !== 3) {
@@ -53,4 +59,9 @@ setInterval(() => {
 
   if (currentSlide === 3) currentSlide = 0;
 
-}, 3300);
+}, 2300);
+
+getStartedBtn.addEventListener('click',
+  () => {
+    getStarted.style.display = 'none';
+  })
