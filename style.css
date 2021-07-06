@@ -9,8 +9,63 @@ html {
   box-sizing: border-box;
 }
 
+body{
+  position: relative;
+}
 
+.splash{
+  background: black;
+  position: fixed;
+  inset: 0;
+  z-index: 200;
+  color: white;
+  font-family: 'Comfortaa', cursive;
+  font-size: 3rem;
+  font-weight: 900;
+  line-height: 90vh;
+  text-align: center;
+  overflow: hidden;
+}
 
+.splash:before{
+content: '';
+position: absolute;
+left: 120%;
+width: 120%;
+height: 100%;
+background: linear-gradient(90deg, transparent 0%, #000 5%, #000 100%);
+animation: animate 10s linear forwards;
+}
+.splash.display-none{
+  background: black;
+  position: fixed;
+  inset: 0;
+  opacity: 0;
+  z-index: -1;
+  color: white;
+  font-family: 'Comfortaa', cursive;
+  font-size: 5rem;
+  font-weight: 900;
+  text-align: center;
+  line-height: 90vh;
+  transition: all 1s ease-in-out 1s;
+}
+
+@keyframes animate
+{
+  0%
+  {
+    left: -20%;
+  }
+  50%
+  {
+    left: 120%;
+  } 
+  100%
+  {
+    left: -20%;
+  }
+}
 .slides {
   max-width: 100%;
   height: 60vh;

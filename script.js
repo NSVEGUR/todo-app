@@ -6,7 +6,21 @@ const getStarted = document.querySelector('.getStarted');
 const getStartedBtn = document.querySelector('.head-start');
 
 
+const splash = document.querySelector('.splash');
 
+if (sessionStorage.isVisited)
+  splash.classList.add('display-none');
+
+if (!sessionStorage.isVisited) {
+  setTimeout(() => {
+    sessionStorage.isVisited = 'true'
+  }, 3700)
+  document.addEventListener('DOMContentLoaded', (e) => {
+    setTimeout(() => {
+      splash.classList.add('display-none');
+    }, 3000);
+  });
+}
 
 
 const createDots = function () {
@@ -45,20 +59,37 @@ const moveForward = function (slide) {
 
 };
 
-moveForward(currentSlide);
-++currentSlide;
-
-setInterval(() => {
-
-  if (currentSlide !== 3) {
+if (!sessionStorage.isVisited) {
+  setTimeout(() => {
     moveForward(currentSlide);
     ++currentSlide;
-  }
 
-  if (currentSlide === 3) currentSlide = 0;
+    setInterval(() => {
 
-}, 2300);
+      if (currentSlide !== 3) {
+        moveForward(currentSlide);
+        ++currentSlide;
+      }
 
+      if (currentSlide === 3) currentSlide = 0;
+
+    }, 2300);
+  }, 3500);
+} else {
+  moveForward(currentSlide);
+  ++currentSlide;
+
+  setInterval(() => {
+
+    if (currentSlide !== 3) {
+      moveForward(currentSlide);
+      ++currentSlide;
+    }
+
+    if (currentSlide === 3) currentSlide = 0;
+
+  }, 2300);
+}
 getStartedBtn.addEventListener('click',
   () => {
     getStarted.style.display = 'none';
