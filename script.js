@@ -7,9 +7,7 @@ const getStartedBtn = document.querySelector('.head-start');
 
 
 
-slides.forEach((s, i) => {
-  s.style.transform = `translateX(${100 * i}%)`;
-});
+
 
 const createDots = function () {
   slides.forEach(function (_, i) {
