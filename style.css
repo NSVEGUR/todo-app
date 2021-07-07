@@ -180,12 +180,12 @@ main{
   position: absolute;
   inset: 4;
   width: 100vw;
-  height: 100vh;
+  height: 300vh;
   z-index: 10;
   background-image: linear-gradient(120deg, #a1c4fd 0%, #c2e9fb 100%);
   display: flex;
   flex-direction: column;
-  justify-content: center;
+  justify-content: flex-start;
   align-items: center;
 }
 
@@ -197,12 +197,48 @@ main{
   font-weight: 900;
 }
 
+.links{
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  list-style: none;
+}
+
+.theme{
+  height: 3rem;
+  width: 3rem;
+  border: solid 1px #424242;
+  border-radius: 50%;
+  background-image: linear-gradient(120deg, #a1c4fd 0%, #c2e9fb 100%);
+}
+
+.menu{
+  height: 3rem;
+  width: 3rem;
+  border: solid 1px #424242;
+  border-radius: 50%;
+  background-image: rgba(163, 161, 161, 0.8);
+  color: black;
+}
+
+.task-foot{
+  background-image: linear-gradient(120deg, #a1c4fd 0%, #c2e9fb 100%);
+  justify-content: flex-end;
+  align-self: center;
+  padding: 2rem 2rem;
+  font-family: 'Comfortaa', cursive;
+  font-size: 3rem;
+  font-weight: 900;
+  position: absolute;
+  bottom: 0;
+}
+
 .display-content{
   display: none;
 }
 
 .task{
-  width: 50%;
+  width: 70%;
   height: 5rem;
   padding: 1rem;
   text-align: center;
@@ -220,6 +256,5 @@ main{
 }
 
 .task-add{
-  color:rgb(100, 95, 95);
-
+  color:rgb(146, 137, 137);
 }

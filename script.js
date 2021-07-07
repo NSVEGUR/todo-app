@@ -7,6 +7,9 @@ const getStartedBtn = document.querySelector('.head-start');
 const main = document.querySelector('main');
 const right = document.querySelector('.right');
 const left = document.querySelector('.left');
+const theme = document.querySelector('.theme');
+const colorOne = `linear-gradient(120deg, #a1c4fd 0%, #c2e9fb 100%);`;
+const colorTwo = ``;
 
 // //Creating splash screen
 const splash = document.querySelector('.splash');
@@ -101,17 +104,14 @@ getStartedBtn.addEventListener('click',
     document.querySelector('.task-head').classList.remove('display-content');
   })
 
-
-
-
 let task = '';
-let taskCount = 3;
+let taskCount = 4;
 
+let html = `<div class="task task-1">To do</div>
+<div class="task task-2">Important</div>
+<div class="task task-3">Normal</div>`;
 
-
-
-let html = `<div class="task task-1">Works to do</div>
-<div class="task task-2">List things</div>`;
+let foot = `<h1 class="task-foot">Made with ❤ by NSVegur</h1>`;
 
 let addMore = `<input class="task task-add" type="text" value="Add more" onfocus='this.value = ""' />`;
 document.addEventListener('keydown',
@@ -124,6 +124,6 @@ document.addEventListener('keydown',
 
       html += `<div class="task task-${taskCount}">${task}</div>`;
       ++taskCount;
-      main.insertAdjacentHTML("afterbegin", html + addMore);
+      main.insertAdjacentHTML("afterbegin", html + addMore + foot);
     }
   });
