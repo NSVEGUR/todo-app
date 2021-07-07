@@ -111,6 +111,16 @@ animation: animate 10s linear forwards;
   grid-row: 2/3;
 }
 
+button{
+  cursor: pointer;
+  backface-visibility: hidden;
+}
+
+button:focus{
+  outline: none;
+  backface-visibility: hidden;
+}
+
 .btn-slide{
   position: absolute;
   top: 50%;
