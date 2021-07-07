@@ -17,6 +17,8 @@ const colorThree = 'linear-gradient(to right, #43e97b 0%, #38f9d7 100%)';
 const colorFour = 'linear-gradient(120deg, #fdcbf1 0%, #fdcbf1 1%, #e6dee9 100%)';
 let themeCount = 1;
 
+art.style.background = colorOne;
+
 // //Creating splash screen
 const splash = document.querySelector('.splash');
 
@@ -120,7 +122,6 @@ const themeSwticher = function (color) {
 
 theme.addEventListener('click',
   () => {
-    console.log(themeCount)
     switch (themeCount) {
       case 1: themeSwticher(colorTwo);
         ++themeCount;
@@ -166,7 +167,7 @@ Important
 Normal
 </div>`;
 
-let foot = `<h1 class="task-foot">Made with ❤ by NSVegur</h1>`;
+const foot = `<h1 class="task-foot">Made with ❤ by NSVegur</h1>`;
 
 let addMore = `<input class="task task-add" type="text" value="+  Add more" onfocus='this.value = ""' />`;
 document.addEventListener('keydown',
