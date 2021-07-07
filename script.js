@@ -152,7 +152,6 @@ document.querySelector('.overlay').addEventListener('click',
   })
 let task = '';
 let taskCount = 4;
-let screenHeight = 2;
 
 let html = `<div class="task task-1">
 <span><img class="task-img" src="Images/todo.png" /></span>
@@ -172,7 +171,7 @@ let foot = `<h1 class="task-foot">Made with ❤ by NSVegur</h1>`;
 let addMore = `<input class="task task-add" type="text" value="+  Add more" onfocus='this.value = ""' />`;
 document.addEventListener('keydown',
   (e) => {
-    if (e.key === 'Enter') {
+    if (e.key === 'Enter' && taskCount < 11) {
 
       task = document.querySelector('.task-add').value;
 
@@ -182,9 +181,14 @@ document.addEventListener('keydown',
       <span><img class="task-img" src="Images/new.png" /></span>${task}</div>`;
       ++taskCount;
       if (taskCount % 6 === 0) {
-        main.style.height = `${screenHeight * 100}vh`;
-        ++screenHeight;
+        main.style.height = '150vh';
       }
-      main.insertAdjacentHTML("afterbegin", html + addMore + foot);
+      if (taskCount === 11) {
+        main.insertAdjacentHTML("afterbegin", html + foot);
+      }
+      else {
+        main.insertAdjacentHTML("afterbegin", html + addMore + foot);
+      }
+
     }
   });
