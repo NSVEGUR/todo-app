@@ -154,13 +154,22 @@ let task = '';
 let taskCount = 4;
 let screenHeight = 2;
 
-let html = `<div class="task task-1">To do</div>
-<div class="task task-2">Important</div>
-<div class="task task-3">Normal</div>`;
+let html = `<div class="task task-1">
+<span><img class="task-img" src="Images/todo.png" /></span>
+To do
+</div>
+<div class="task task-2">
+<span><img class="task-img" src="Images/imp.png" /></span>
+Important
+</div>
+<div class="task task-3">
+<span><img class="task-img" src="Images/nor.png" /></span>
+Normal
+</div>`;
 
 let foot = `<h1 class="task-foot">Made with ❤ by NSVegur</h1>`;
 
-let addMore = `<input class="task task-add" type="text" value="Add more" onfocus='this.value = ""' />`;
+let addMore = `<input class="task task-add" type="text" value="+  Add more" onfocus='this.value = ""' />`;
 document.addEventListener('keydown',
   (e) => {
     if (e.key === 'Enter') {
@@ -169,7 +178,8 @@ document.addEventListener('keydown',
 
       main.innerHTML = '';
 
-      html += `<div class="task task-${taskCount}">${task}</div>`;
+      html += `<div class="task task-${taskCount}">
+      <span><img class="task-img" src="Images/new.png" /></span>${task}</div>`;
       ++taskCount;
       if (taskCount % 6 === 0) {
         main.style.height = `${screenHeight * 100}vh`;
