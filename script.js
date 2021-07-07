@@ -171,7 +171,7 @@ document.addEventListener('keydown',
 
       html += `<div class="task task-${taskCount}">${task}</div>`;
       ++taskCount;
-      if (taskCount % 7 === 0) {
+      if (taskCount % 6 === 0) {
         main.style.height = `${screenHeight * 100}vh`;
         ++screenHeight;
       }
