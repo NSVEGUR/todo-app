@@ -174,21 +174,22 @@ document.addEventListener('keydown',
     if (e.key === 'Enter' && taskCount < 11) {
 
       task = document.querySelector('.task-add').value;
+      if (task !== '+  Add more' && task !== '') {
+        main.innerHTML = '';
 
-      main.innerHTML = '';
-
-      html += `<div class="task task-${taskCount}">
+        html += `<div class="task task-${taskCount}">
       <span><img class="task-img" src="Images/new.png" /></span>${task}</div>`;
-      ++taskCount;
-      if (taskCount % 6 === 0) {
-        main.style.height = '150vh';
+        ++taskCount;
+        if (taskCount % 6 === 0) {
+          main.style.height = '160vh';
+        }
+        if (taskCount === 11) {
+          main.style.height = '130vh';
+          main.insertAdjacentHTML("afterbegin", html + foot);
+        }
+        else {
+          main.insertAdjacentHTML("afterbegin", html + addMore + foot);
+        }
       }
-      if (taskCount === 11) {
-        main.insertAdjacentHTML("afterbegin", html + foot);
-      }
-      else {
-        main.insertAdjacentHTML("afterbegin", html + addMore + foot);
-      }
-
     }
   });
