@@ -190,7 +190,7 @@ main{
   position: absolute;
   inset: 4;
   width: 100vw;
-  height: 300vh;
+  height: 100vh;
   z-index: 10;
   background: linear-gradient(120deg, #a1c4fd 0%, #c2e9fb 100%);
   display: flex;
@@ -217,18 +217,22 @@ main{
 .theme{
   height: 3rem;
   width: 3rem;
-  border: solid 1px #424242;
   border-radius: 50%;
-  background-image: linear-gradient(-225deg, #69EACB 0%, #EACCF8 48%, #6654F1 100%);
+  background: rgba(255, 255, 255, 0.5);
+  backdrop-filter: blur(5px);
+  border: double 1px rgb(107, 102, 102);
+  box-shadow: 2px 2px 3px black;
 }
 
 .menu{
   height: 3rem;
   width: 3rem;
-  border: solid 1px #424242;
   border-radius: 50%;
-  background: rgba(214, 203, 203, 0.842);
   color: black;
+  background: rgba(255, 255, 255, 0.5);
+  backdrop-filter: blur(5px);
+  border: double 1px rgb(107, 102, 102);
+  box-shadow: 2px 2px 3px black;
 }
 
 .task-foot{
@@ -266,5 +270,52 @@ main{
 }
 
 .task-add{
-  color:rgb(146, 137, 137);
+  background: rgba(255, 255, 255, 0.15);
+  backdrop-filter: blur(1px);
+  border: double 1px rgb(175, 170, 170);
+  box-shadow: 2px 2px 3px rgb(112, 111, 111);
+  color:rgb(179, 175, 175);
+}
+
+.menuBar{
+  position: absolute;
+  inset: 0;
+  transform: translate(25%, 200%);
+  z-index: 20;
+}
+
+.menuItem{
+  width: 50%;
+  height: 8rem;
+  font-family: 'Comfortaa', cursive;
+  font-size: 4rem;
+  font-weight: 900;
+  background: rgba(0,0,0,0.5);
+  color: white;
+  border: solid 2px black;
+}
+
+.menuList{
+  border-top-left-radius: 2rem;
+  border-top-right-radius: 2rem;
+  padding: 2rem 2rem;
+  text-align: center;
+}
+.menuHelp{
+  border-bottom-left-radius: 2rem;
+  border-bottom-right-radius: 2rem;
+  padding: 2rem 2rem;
+  text-align: center;
+}
+
+.overlay{
+  position: absolute;
+  inset: 0;
+  width: 100vw;
+  height: 100vh;
+  background: rgba(0,0,0,0.7);
+  z-index: 15;
+}
+.hidden{
+  display:none;
 }

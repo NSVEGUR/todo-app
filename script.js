@@ -110,6 +110,7 @@ getStartedBtn.addEventListener('click',
     document.querySelector('.task-head').classList.remove('display-content');
   });
 
+//Theme Changing
 const themeSwticher = function (color) {
   main.style.background = color;
   title.style.background = color;
@@ -137,8 +138,21 @@ theme.addEventListener('click',
     }
   })
 
+//Menu bar
+menu.addEventListener('click',
+  () => {
+    document.querySelector('.overlay').style.height = main.style.height;
+    document.querySelector('.menuBar').classList.remove('hidden');
+    document.querySelector('.overlay').classList.remove('hidden');
+  })
+document.querySelector('.overlay').addEventListener('click',
+  () => {
+    document.querySelector('.menuBar').classList.add('hidden');
+    document.querySelector('.overlay').classList.add('hidden');
+  })
 let task = '';
 let taskCount = 4;
+let screenHeight = 2;
 
 let html = `<div class="task task-1">To do</div>
 <div class="task task-2">Important</div>
@@ -157,6 +171,10 @@ document.addEventListener('keydown',
 
       html += `<div class="task task-${taskCount}">${task}</div>`;
       ++taskCount;
+      if (taskCount % 7 === 0) {
+        main.style.height = `${screenHeight * 100}vh`;
+        ++screenHeight;
+      }
       main.insertAdjacentHTML("afterbegin", html + addMore + foot);
     }
   });
