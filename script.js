@@ -256,8 +256,7 @@ document.addEventListener('keydown',
       <div class=" tasks-item context-after">
         ${context}
       </div>
-      <div class="tasks-item due-after">
-        Due date: ${date ? date : day}
+      <div class="tasks-item due-after">${date ? date : day}
       </div>
       <div align="right" class="tasks-item del-after">
         <img class="del" src="Images/delete.png">

@@ -336,7 +336,7 @@ main{
 }
 
 .tasks{
-  width: 90%;
+  width: 96%;
   height: 5rem;
   display: flex;
   flex-direction: row;
@@ -363,8 +363,8 @@ main{
 }
 
 .context{
-  width: 80%;
-  height: 100%;
+  width: 70%;
+  height: 5rem;
   font-family: 'Comfortaa', cursive;
   font-size: 3rem;
   font-weight: bold;
@@ -375,8 +375,8 @@ main{
 }
 
 .due{
-  width: 10%;
-  height: 100%;
+  width: 20%;
+  height: 5rem;
   align-self: center;
   font-family: 'Comfortaa', cursive;
   font-size: 1.5rem;
@@ -401,7 +401,7 @@ main{
 }
 
 .context-after{
-  width: 80%;
+  width: 70%;
   height: 100%;
   font-family: 'Comfortaa', cursive;
   font-size: 3rem;
@@ -417,11 +417,11 @@ main{
 }
 
 .due-after{
-  width: 10%;
+  width: 20%;
   height: 100%;
   align-self: center;
   font-family: 'Comfortaa', cursive;
-  font-size: 1.5rem;
+  font-size: 1rem;
   font-weight: bold;
   background: transparent;
   border: none;
@@ -431,7 +431,7 @@ main{
 }
 
 .del-after{
-  width: 5%;
+  width: 10%;
   align-self: center;
 }
 .del{
