@@ -22,6 +22,16 @@ let themeCount = 1;
 
 const foot = `<h1 class="task-foot">Made with ❤ by NSVegur</h1>`;
 const addMore = `<input class="task task-add" type="text" value="+  Add more" onfocus='this.value = ""' />`;
+const tempHidden = `<div class="tasks tasks-1 hidden">
+<input class="tasks-item cir-check" id="done" type="checkbox" />
+<div class=" tasks-item context-after">
+</div>
+<div class="tasks-item due-after">
+</div>
+<div align="right" class="tasks-item del-after">
+  <img class="del" src="Images/delete.png">
+</div>
+</div>`
 let html = `<div class="task click" data-num="1">
 <span><img class="task-img" src="Images/todo.png" /></span>
 To do
@@ -38,14 +48,14 @@ const updateMain = function () {
   if (localStorage.getItem('mainFlag') && localStorage.getItem('mainFullFlag')) {
     main.innerHTML = '';
     main.style.height = '130vh';
-    main.insertAdjacentHTML("afterbegin", localStorage.getItem('mainPage') + foot);
+    main.insertAdjacentHTML("afterbegin", localStorage.getItem('mainPage') + tempHidden + foot);
   }
   else if (localStorage.getItem('mainFlag')) {
     main.innerHTML = '';
-    main.insertAdjacentHTML("afterbegin", localStorage.getItem('mainPage') + addMore + foot);
+    main.insertAdjacentHTML("afterbegin", localStorage.getItem('mainPage') + addMore + tempHidden + foot);
   } else {
     main.innerHTML = '';
-    main.insertAdjacentHTML("afterbegin", html + addMore + foot);
+    main.insertAdjacentHTML("afterbegin", html + addMore + tempHidden + foot);
   }
 }
 
