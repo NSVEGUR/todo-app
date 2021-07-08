@@ -447,7 +447,7 @@ main{
   content: attr(data-title);
   position: absolute;
   bottom: -1.6em;
-  left: 90%;
+  left: 80%;
   font-family: 'Hind Siliguri', sans-serif;
   padding: 4px 4px 4px 8px;
   color: white;
