@@ -334,3 +334,130 @@ main{
 .hidden{
   display:none;
 }
+
+.tasks{
+  width: 90%;
+  height: 5rem;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  padding-top: 1rem;
+  padding-bottom: 1rem;
+  color:rgb(51, 50, 50);
+  font-family: 'Comfortaa', cursive;
+  font-size: 3rem;
+  font-weight: bold;
+  margin: 1rem;
+  background: rgba(255, 255, 255, 0.5);
+  backdrop-filter: blur(5px);
+  border-radius: 0.5rem;
+  border: double 1px rgb(107, 102, 102);
+  box-shadow: 2px 2px 3px black;
+  cursor: pointer;
+}
+
+.cir{
+  width: 5%;
+  margin: 0;
+}
+
+.context{
+  width: 80%;
+  height: 100%;
+  font-family: 'Comfortaa', cursive;
+  font-size: 3rem;
+  font-weight: bold;
+  background: transparent;
+  border: none;
+  color:rgb(179, 175, 175);
+  margin: 0;
+}
+
+.due{
+  width: 10%;
+  height: 100%;
+  align-self: center;
+  font-family: 'Comfortaa', cursive;
+  font-size: 1.5rem;
+  font-weight: bold;
+  background: transparent;
+  border: none;
+  cursor: auto;
+  color:rgb(179, 175, 175);
+  margin: 0;
+}
+
+.cir-check{
+  width: 5%;
+  margin: 0;
+}
+.circle{
+  height: 2rem;
+  width: 2rem;
+  border: solid 1px black;
+  background: transparent;
+  border-radius: 50%;
+}
+
+.context-after{
+  width: 80%;
+  height: 100%;
+  font-family: 'Comfortaa', cursive;
+  font-size: 3rem;
+  font-weight: bold;
+  background: transparent;
+  border: none;
+  color:rgb(179, 175, 175);
+  margin: 0;
+}
+
+#done{
+  height: 2rem;
+}
+
+.due-after{
+  width: 10%;
+  height: 100%;
+  align-self: center;
+  font-family: 'Comfortaa', cursive;
+  font-size: 1.5rem;
+  font-weight: bold;
+  background: transparent;
+  border: none;
+  cursor: auto;
+  color:rgb(179, 175, 175);
+  margin: 0;
+}
+
+.del-after{
+  width: 5%;
+  align-self: center;
+}
+.del{
+  height: 3rem;
+  margin-right: 1rem;
+}
+[data-title]:hover:after {
+  opacity: 1;
+  transition: all 0.1s ease 0.5s;
+  visibility: visible;
+}
+[data-title]:after {
+  content: attr(data-title);
+  position: absolute;
+  bottom: -1.6em;
+  left: 90%;
+  font-family: 'Hind Siliguri', sans-serif;
+  padding: 4px 4px 4px 8px;
+  color: white;
+  white-space: nowrap;
+  -moz-border-radius: 5px;
+  -webkit-border-radius: 5px;
+  border-radius: 5px;
+  background: black;
+  opacity: 0;
+  z-index: 99999;
+  visibility: hidden;
+}
+
