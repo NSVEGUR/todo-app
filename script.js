@@ -38,7 +38,6 @@ if (!sessionStorage.isVisited) {
 
 //creating dots
 
-const slider = function () {
   const createDots = function () {
     slides.forEach(function (_, i) {
       dotContainer.insertAdjacentHTML(
@@ -61,19 +60,21 @@ const slider = function () {
 
 
   //slider creation
+const slider = function () {
 
   const goTo = function (slide) {
     slides.forEach(
       (s, i) => (s.style.transform = `translateX(${100 * (i - slide)}%)`)
     );
 
+ setTimeout(()=>{
     document
       .querySelectorAll('.dots__dot')
       .forEach(dot => dot.classList.remove('dots__dot--active'));
-
+   
     document
       .querySelector(`.dots__dot[data-slide="${slide}"]`)
-      .classList.add('dots__dot--active');
+      .classList.add('dots__dot--active');}, 1000);
 
   };
 
@@ -172,8 +173,8 @@ const foot = `<h1 class="task-foot">Made with ❤ by NSVegur</h1>`;
 let addMore = `<input class="task task-add" type="text" value="+  Add more" onfocus='this.value = ""' />`;
 document.addEventListener('keydown',
   (e) => {
-    if (e.key === 'Enter' && taskCount < 11) {
 
+    if (e.key === 'Enter' && taskCount < 11) {
       task = document.querySelector('.task-add').value;
       if (task !== '+  Add more' && task !== '') {
         main.innerHTML = '';
