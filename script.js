@@ -22,7 +22,7 @@ let themeCount = 1;
 
 const foot = `<h1 class="task-foot">Made with ❤ by NSVegur</h1>`;
 const addMore = `<input class="task task-add" type="text" value="+  Add more" onfocus='this.value = ""' />`;
-const tempHidden = `<div class="tasks tasks-1 hidden">
+const tempHidden = `<div class="tasks tasks-1 hide">
 <input class="tasks-item cir-check" id="done" type="checkbox" />
 <div class=" tasks-item context-after">
 </div>

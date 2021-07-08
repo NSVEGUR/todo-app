@@ -485,3 +485,6 @@ main{
   visibility: hidden;
 }
 
+.hide{
+  display: none;
+}
