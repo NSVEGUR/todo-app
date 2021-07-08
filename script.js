@@ -19,11 +19,48 @@ let themeCount = 1;
 
 art.style.background = colorOne;
 
+let currentSlide = 0;
+
+const goTo = function (slide) {
+    slides.forEach(
+      (s, i) => (s.style.transform = `translateX(${100 * (i - slide)}%)`)
+    );
+
+ setTimeout(()=>{
+    document
+      .querySelectorAll('.dots__dot')
+      .forEach(dot => dot.classList.remove('dots__dot--active'));
+   
+    document
+      .querySelector(`.dots__dot[data-slide="${slide}"]`)
+      .classList.add('dots__dot--active');}, 1000);
+
+  };
+
+//slider auto
+
+const sliderAuto = function()
+{
+  setInterval(() => {
+    if (currentSlide < 2) {
+      ++currentSlide;
+      goTo(currentSlide);
+    }
+    else if (currentSlide === 2) {
+      currentSlide = 0;
+      goTo(currentSlide);
+    }
+    }, 3200);
+}
+
 // //Creating splash screen
 const splash = document.querySelector('.splash');
 
 if (sessionStorage.isVisited)
+{
   splash.classList.add('display-none');
+  sliderAuto();
+}
 
 if (!sessionStorage.isVisited) {
   setTimeout(() => {
@@ -32,6 +69,7 @@ if (!sessionStorage.isVisited) {
   document.addEventListener('DOMContentLoaded', (e) => {
     setTimeout(() => {
       splash.classList.add('display-none');
+      sliderAuto();
     }, 3000);
   });
 }
@@ -49,7 +87,6 @@ if (!sessionStorage.isVisited) {
 
   createDots();
 
-  let currentSlide = 0;
 
   document
     .querySelector(`.dots__dot[data-slide="${currentSlide}"]`)
@@ -59,25 +96,7 @@ if (!sessionStorage.isVisited) {
 
 
 
-  //slider creation
-const slider = function () {
-
-  const goTo = function (slide) {
-    slides.forEach(
-      (s, i) => (s.style.transform = `translateX(${100 * (i - slide)}%)`)
-    );
-
- setTimeout(()=>{
-    document
-      .querySelectorAll('.dots__dot')
-      .forEach(dot => dot.classList.remove('dots__dot--active'));
-   
-    document
-      .querySelector(`.dots__dot[data-slide="${slide}"]`)
-      .classList.add('dots__dot--active');}, 1000);
-
-  };
-
+  //slider dynamic
   const nextSlide = function () {
     if (currentSlide < 2) {
       ++currentSlide;
@@ -102,10 +121,9 @@ const slider = function () {
 
   right.addEventListener('click', nextSlide);
   left.addEventListener('click', prevSlide);
-}
 
-slider();
 
+//getting Started
 getStartedBtn.addEventListener('click',
   () => {
     getStarted.style.display = 'none';
