@@ -357,6 +357,30 @@ main{
   cursor: pointer;
 }
 
+.tasks-add{
+  width: 96%;
+  height: 5rem;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  padding-top: 1rem;
+  padding-bottom: 1rem;
+  color:rgb(51, 50, 50);
+  font-family: 'Comfortaa', cursive;
+  font-size: 3rem;
+  font-weight: bold;
+  margin: 1rem;
+  background: rgba(255, 255, 255, 0.15);
+  backdrop-filter: blur(1px);
+  border: double 1px rgb(175, 170, 170);
+  box-shadow: 2px 2px 3px rgb(112, 111, 111);
+  color:rgb(179, 175, 175);
+  border-radius: 0.5rem;
+  cursor: pointer;
+}
+
+
 .cir{
   width: 5%;
   margin: 0;
@@ -406,9 +430,9 @@ main{
   font-family: 'Comfortaa', cursive;
   font-size: 3rem;
   font-weight: bold;
+  color: black;
   background: transparent;
   border: none;
-  color:rgb(179, 175, 175);
   margin: 0;
 }
 

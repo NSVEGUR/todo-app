@@ -200,7 +200,7 @@ Important
 Normal
 </div>`;
 
-const intask = ` <div class="tasks">
+const intask = ` <div class="tasks-add">
 <div class="tasks-item cir">
   <button class="circle"></button>
 </div>
