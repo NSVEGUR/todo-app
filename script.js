@@ -20,6 +20,24 @@ const colorFour = 'linear-gradient(120deg, #fdcbf1 0%, #fdcbf1 1%, #e6dee9 100%)
 let themeCount = 1;
 
 
+
+const foot = `<h1 class="task-foot">Made with ❤ by NSVegur</h1>`;
+const addMore = `<input class="task task-add" type="text" value="+  Add more" onfocus='this.value = ""' />`;
+
+const updateMain = function () {
+  if (localStorage.getItem('mainFlag') && localStorage.getItem('mainFullFlag')) {
+    main.innerHTML = '';
+    main.style.height = '130vh';
+    main.insertAdjacentHTML("afterbegin", localStorage.getItem('mainPage') + foot);
+  }
+  else if (localStorage.getItem('mainFlag')) {
+    main.innerHTML = '';
+    main.insertAdjacentHTML("afterbegin", localStorage.getItem('mainPage') + addMore + foot);
+  }
+}
+
+updateMain();
+
 //themeChanger Function
 const themeSwticher = function (color) {
   main.style.background = color;
@@ -236,9 +254,7 @@ const intask = ` <div class="tasks-add">
 
 let newtask = '';
 
-const foot = `<h1 class="task-foot">Made with ❤ by NSVegur</h1>`;
 
-let addMore = `<input class="task task-add" type="text" value="+  Add more" onfocus='this.value = ""' />`;
 
 //Date modification
 const dateModify = function (string) {
@@ -246,16 +262,30 @@ const dateModify = function (string) {
   return `${arr[2]}-${arr[1]}-${arr[0]}`;
 }
 
+
+
 //Enter for add
 document.addEventListener('keydown',
   (e) => {
 
-    if (e.key === 'Enter' && taskCount < 11 && pageFlag === 0) {
+    if (e.key === 'Enter' && taskCount < 11 && pageFlag === 0 && !Number(localStorage.getItem('mainFlag'))) {
       task = document.querySelector('.task-add').value;
       if (task !== '+  Add more' && task !== '') {
         main.innerHTML = '';
-
+        localStorage.setItem('mainFlag', '1');
         html += `<div class="task click task-${taskCount}">
+      <span><img class="task-img" src="Images/new.png" /></span>${task}</div>`;
+        ++taskCount;
+        main.insertAdjacentHTML("afterbegin", html + addMore + foot);
+        localStorage.setItem('mainPage', html);
+      }
+    } else if (e.key === 'Enter' && taskCount < 11 && pageFlag === 0) {
+      task = document.querySelector('.task-add').value;
+
+
+      if (task !== '+  Add more' && task !== '') {
+        main.innerHTML = '';
+        const addon = `<div class="task click task-${taskCount}">
       <span><img class="task-img" src="Images/new.png" /></span>${task}</div>`;
         ++taskCount;
         if (taskCount % 6 === 0) {
@@ -263,10 +293,13 @@ document.addEventListener('keydown',
         }
         if (taskCount === 11) {
           main.style.height = '130vh';
-          main.insertAdjacentHTML("afterbegin", html + foot);
+          localStorage.setItem('mainFullFlag', '1');
+          main.insertAdjacentHTML("afterbegin", localStorage.getItem('mainPage') + addon + foot);
+          localStorage.setItem('mainPage', localStorage.getItem('mainPage') + addon);
         }
         else {
-          main.insertAdjacentHTML("afterbegin", html + addMore + foot);
+          main.insertAdjacentHTML("afterbegin", localStorage.getItem('mainPage') + addon + addMore + foot);
+          localStorage.setItem('mainPage', localStorage.getItem('mainPage') + addon);
         }
       }
     }
@@ -321,18 +354,11 @@ main.addEventListener('click',
 
 myList.addEventListener('click',
   () => {
-    main.innerHTML = '';
 
     document.querySelector('.menuBar').classList.add('hidden');
     document.querySelector('.overlay').classList.add('hidden');
 
-    if (taskCount === 11) {
-      main.style.height = '130vh';
-      main.insertAdjacentHTML("afterbegin", html + foot);
-    }
-    else {
-      main.insertAdjacentHTML("afterbegin", html + addMore + foot);
-    }
+    updateMain();
 
     pageFlag = 0;
   })
