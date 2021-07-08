@@ -20,10 +20,20 @@ const colorFour = 'linear-gradient(120deg, #fdcbf1 0%, #fdcbf1 1%, #e6dee9 100%)
 let themeCount = 1;
 
 
-
 const foot = `<h1 class="task-foot">Made with ❤ by NSVegur</h1>`;
 const addMore = `<input class="task task-add" type="text" value="+  Add more" onfocus='this.value = ""' />`;
-
+let html = `<div class="task click" data-num="1">
+<span><img class="task-img" src="Images/todo.png" /></span>
+To do
+</div>
+<div class="task click" data-num="2">
+<span><img class="task-img" src="Images/imp.png" /></span>
+Important
+</div>
+<div class="task click" data-num="3">
+<span><img class="task-img" src="Images/nor.png" /></span>
+Normal
+</div>`;
 const updateMain = function () {
   if (localStorage.getItem('mainFlag') && localStorage.getItem('mainFullFlag')) {
     main.innerHTML = '';
@@ -33,6 +43,9 @@ const updateMain = function () {
   else if (localStorage.getItem('mainFlag')) {
     main.innerHTML = '';
     main.insertAdjacentHTML("afterbegin", localStorage.getItem('mainPage') + addMore + foot);
+  } else {
+    main.innerHTML = '';
+    main.insertAdjacentHTML("afterbegin", html + addMore + foot);
   }
 }
 
@@ -231,18 +244,7 @@ document.querySelector('.overlay').addEventListener('click',
 let task = '';
 let taskCount = 4;
 
-let html = `<div class="task click task-1">
-<span><img class="task-img" src="Images/todo.png" /></span>
-To do
-</div>
-<div class="task click task-2">
-<span><img class="task-img" src="Images/imp.png" /></span>
-Important
-</div>
-<div class="task click task-3">
-<span><img class="task-img" src="Images/nor.png" /></span>
-Normal
-</div>`;
+
 
 const intask = ` <div class="tasks-add">
 <div class="tasks-item cir">
@@ -273,7 +275,7 @@ document.addEventListener('keydown',
       if (task !== '+  Add more' && task !== '') {
         main.innerHTML = '';
         localStorage.setItem('mainFlag', '1');
-        html += `<div class="task click task-${taskCount}">
+        html += `<div class="task click" data-num = ${taskCount}>
       <span><img class="task-img" src="Images/new.png" /></span>${task}</div>`;
         ++taskCount;
         main.insertAdjacentHTML("afterbegin", html + addMore + foot);
@@ -285,7 +287,7 @@ document.addEventListener('keydown',
 
       if (task !== '+  Add more' && task !== '') {
         main.innerHTML = '';
-        const addon = `<div class="task click task-${taskCount}">
+        const addon = `<div class="task click" data-num = ${taskCount}>
       <span><img class="task-img" src="Images/new.png" /></span>${task}</div>`;
         ++taskCount;
         if (taskCount % 6 === 0) {
@@ -342,8 +344,12 @@ main.addEventListener('click',
   (e) => {
     const clicked = e.target.closest('.click');
 
+
     if (!clicked)
       return;
+
+    //console.log(clicked.dataset.num);
+
     main.innerHTML = '';
     main.style.height = '100vh';
 
@@ -354,7 +360,6 @@ main.addEventListener('click',
 
 myList.addEventListener('click',
   () => {
-
     document.querySelector('.menuBar').classList.add('hidden');
     document.querySelector('.overlay').classList.add('hidden');
 
