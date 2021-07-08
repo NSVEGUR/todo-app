@@ -19,6 +19,35 @@ const colorThree = 'linear-gradient(to right, #43e97b 0%, #38f9d7 100%)';
 const colorFour = 'linear-gradient(120deg, #fdcbf1 0%, #fdcbf1 1%, #e6dee9 100%)';
 let themeCount = 1;
 
+
+//themeChanger Function
+const themeSwticher = function (color) {
+  main.style.background = color;
+  title.style.background = color;
+  art.style.background = color;
+}
+
+//restore theme
+const themeStorage = function () {
+  switch (Number(localStorage.getItem('themeCount')) - 1) {
+    case 1: themeSwticher(colorTwo);
+      ++themeCount;
+      break;
+    case 2: themeSwticher(colorThree);
+      ++themeCount;
+      break;
+    case 3: themeSwticher(colorFour);
+      ++themeCount;
+      break;
+    case 4: themeSwticher(colorOne);
+      themeCount = 1;
+      break;
+    default: break;
+  }
+}
+
+themeStorage();
+
 let pageFlag = 0;
 
 art.style.background = colorOne;
@@ -144,12 +173,6 @@ getStartedBtn.addEventListener('click',
   });
 
 //Theme Changing
-const themeSwticher = function (color) {
-  main.style.background = color;
-  title.style.background = color;
-  art.style.background = color;
-}
-
 
 theme.addEventListener('click',
   () => {
@@ -168,6 +191,9 @@ theme.addEventListener('click',
         break;
       default: break;
     }
+
+    localStorage.setItem('themeCount', String(themeCount));
+
   })
 
 //Menu bar
@@ -213,6 +239,14 @@ let newtask = '';
 const foot = `<h1 class="task-foot">Made with ❤ by NSVegur</h1>`;
 
 let addMore = `<input class="task task-add" type="text" value="+  Add more" onfocus='this.value = ""' />`;
+
+//Date modification
+const dateModify = function (string) {
+  const arr = string.split('-');
+  return `${arr[2]}-${arr[1]}-${arr[0]}`;
+}
+
+//Enter for add
 document.addEventListener('keydown',
   (e) => {
 
@@ -243,8 +277,7 @@ document.addEventListener('keydown',
 
       const def = new Date();
 
-      const day = `${def.getFullYear()}-${String(def.getMonth() + 1).padStart(2, '0')}
-                   -${String(def.getDate()).padStart(2, '0')}`
+      const day = `${def.getFullYear()}-${String(def.getMonth() + 1).padStart(2, '0')}-${String(def.getDate()).padStart(2, '0')}`
 
 
 
@@ -256,7 +289,7 @@ document.addEventListener('keydown',
       <div class=" tasks-item context-after">
         ${context}
       </div>
-      <div class="tasks-item due-after">${date ? date : day}
+      <div class="tasks-item due-after">${date ? dateModify(date) : dateModify(day)}
       </div>
       <div align="right" class="tasks-item del-after">
         <img class="del" src="Images/delete.png">
