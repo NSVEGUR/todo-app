@@ -205,7 +205,7 @@ const intask = ` <div class="tasks">
   <button class="circle"></button>
 </div>
 <input class="tasks-item context" type="text" value="Add a task" onfocus='this.value = ""' />
-<input class="tasks-item due" type="date" data-title="Due date" />
+<input class="tasks-item due" type="date" data-title="Due" />
 </div>`;
 
 let newtask = '';
