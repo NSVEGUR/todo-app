@@ -18,6 +18,7 @@ const colorTwo = 'linear-gradient(to right, #ffc3a0 0%, #ffafbd 100%)';
 const colorThree = 'linear-gradient(to right, #43e97b 0%, #38f9d7 100%)';
 const colorFour = 'linear-gradient(120deg, #fdcbf1 0%, #fdcbf1 1%, #e6dee9 100%)';
 let themeCount = 1;
+let whichPage = 0;
 
 
 const foot = `<h1 class="task-foot">Made with ❤ by NSVegur</h1>`;
@@ -44,6 +45,14 @@ Important
 <span><img class="task-img" src="Images/nor.png" /></span>
 Normal
 </div>`;
+const addInMore = ` <div class="tasks-add">
+<div class="tasks-item cir">
+  <button class="circle"></button>
+</div>
+<input class="tasks-item context" type="text" value="Add a task" onfocus='this.value = ""' />
+<input class="tasks-item due" type="date" data-title="Due" />
+</div>`;
+
 const updateMain = function () {
   if (localStorage.getItem('mainFlag') && localStorage.getItem('mainFullFlag')) {
     main.innerHTML = '';
@@ -60,6 +69,21 @@ const updateMain = function () {
 }
 
 updateMain();
+
+const updateSub = function (pageNumber) {
+  if (localStorage.getItem(`subFlag-${pageNumber}`) && localStorage.getItem(`subFullFlag-${pageNumber}`)) {
+    main.innerHTML = '';
+    main.style.height = '130vh';
+    main.insertAdjacentHTML("afterbegin", localStorage.getItem(`subPage-${pageNumber}`) + tempHidden + foot);
+  }
+  else if (localStorage.getItem(`subFlag-${pageNumber}`)) {
+    main.innerHTML = '';
+    main.insertAdjacentHTML("afterbegin", localStorage.getItem(`subPage-${pageNumber}`) + addInMore + tempHidden + foot);
+  } else {
+    main.innerHTML = '';
+    main.insertAdjacentHTML("afterbegin", addInMore + tempHidden + foot);
+  }
+}
 
 //themeChanger Function
 const themeSwticher = function (color) {
@@ -251,22 +275,10 @@ document.querySelector('.overlay').addEventListener('click',
     document.querySelector('.menuBar').classList.add('hidden');
     document.querySelector('.overlay').classList.add('hidden');
   })
+
 let task = '';
 let taskCount = 4;
-
-
-
-const intask = ` <div class="tasks-add">
-<div class="tasks-item cir">
-  <button class="circle"></button>
-</div>
-<input class="tasks-item context" type="text" value="Add a task" onfocus='this.value = ""' />
-<input class="tasks-item due" type="date" data-title="Due" />
-</div>`;
-
 let newtask = '';
-
-
 
 //Date modification
 const dateModify = function (string) {
@@ -275,7 +287,16 @@ const dateModify = function (string) {
 }
 
 
-
+//Tabs count in subPage
+const tabCount = function () {
+  let maxArr = [];
+  let tabs = document.querySelectorAll('.forTab');
+  tabs.forEach((val) => {
+    maxArr.push(val.dataset.sub);
+  }
+  )
+  return Math.max(...maxArr)
+}
 //Enter for add
 document.addEventListener('keydown',
   (e) => {
@@ -316,7 +337,8 @@ document.addEventListener('keydown',
       }
     }
 
-    if (e.key === 'Enter' && taskCount < 11 && pageFlag === 1) {
+    if (e.key === 'Enter' && pageFlag === 1 && !Number(localStorage.getItem(`subFlag-${whichPage}`))) {
+
       const context = document.querySelector('.context').value;
       const date = document.querySelector('.due').value;
 
@@ -324,12 +346,10 @@ document.addEventListener('keydown',
 
       const day = `${def.getFullYear()}-${String(def.getMonth() + 1).padStart(2, '0')}-${String(def.getDate()).padStart(2, '0')}`
 
-
-
       if (context !== 'Add a task' && context !== '') {
         main.innerHTML = '';
-
-        newtask += `<div class="tasks tasks-1">
+        localStorage.setItem(`subFlag-${whichPage}`, '1');
+        newtask = `<div class="tasks forTab" data-sub = "1">
       <input class="tasks-item cir-check" id="done" type="checkbox" />
       <div class=" tasks-item context-after">
         ${context}
@@ -340,11 +360,56 @@ document.addEventListener('keydown',
         <img class="del" src="Images/delete.png">
       </div>
     </div>`;
+        localStorage.setItem(`subTabCount-${whichPage}`, '1');
 
-        main.insertAdjacentHTML("afterbegin", newtask + intask + foot);
+        main.insertAdjacentHTML("afterbegin", newtask + addInMore + foot);
+        localStorage.setItem(`subPage-${whichPage}`, newtask);
+
+        console.log(localStorage.getItem(`subPage-${whichPage}`), 'first');
 
         pageFlag = 1;
       }
+    } else if (e.key === 'Enter' && pageFlag === 1 && (Number(localStorage.getItem(`subTabCount-${whichPage}`)) < 11)) {
+
+      const context = document.querySelector('.context').value;
+      const date = document.querySelector('.due').value;
+      const def = new Date();
+      const day = `${def.getFullYear()}-${String(def.getMonth() + 1).padStart(2, '0')}-${String(def.getDate()).padStart(2, '0')}`
+
+
+      if (context !== 'Add a task' && context !== '') {
+        localStorage.setItem(`subTabCount-${whichPage}`, `${tabCount()}`);
+        const dataTabCount = Number(localStorage.getItem(`subTabCount-${whichPage}`)) + 1;
+        main.innerHTML = '';
+        newtask = `<div class="tasks forTab" data-sub = "${String(dataTabCount)}">
+        <input class="tasks-item cir-check" id="done" type="checkbox" />
+        <div class=" tasks-item context-after">
+          ${context}
+        </div>
+        <div class="tasks-item due-after">${date ? dateModify(date) : dateModify(day)}
+        </div>
+        <div align="right" class="tasks-item del-after">
+          <img class="del" src="Images/delete.png">
+        </div>
+      </div>`;
+        if (dataTabCount % 6 === 0) {
+          main.style.height = '160vh';
+        }
+        if (dataTabCount === 11) {
+          main.style.height = '130vh';
+          localStorage.setItem(`subFullFlag-${whichPage}`, '1');
+          main.insertAdjacentHTML("afterbegin", localStorage.getItem(`subPage-${whichPage}`) + newtask + foot);
+          localStorage.setItem(`subPage-${whichPage}`, localStorage.getItem(`subPage-${whichPage}`) + newtask);
+        }
+        else {
+          main.insertAdjacentHTML("afterbegin", localStorage.getItem(`subPage-${whichPage}`) + newtask + addInMore + foot);
+          localStorage.setItem(`subPage-${whichPage}`, localStorage.getItem(`subPage-${whichPage}`) + newtask);
+        }
+      }
+      console.log(localStorage.getItem(`subPage-${whichPage}`), 'second');
+
+      pageFlag = 1;
+
     }
   });
 
@@ -358,12 +423,12 @@ main.addEventListener('click',
     if (!clicked)
       return;
 
-    //console.log(clicked.dataset.num);
+    whichPage = clicked.dataset.num;
 
     main.innerHTML = '';
     main.style.height = '100vh';
 
-    main.insertAdjacentHTML("afterbegin", intask + foot);
+    updateSub(whichPage);
 
     pageFlag = 1;
   })
