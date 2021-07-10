@@ -10,6 +10,7 @@ const left = document.querySelector('.left');
 const theme = document.querySelector('.theme');
 const title = document.querySelector('.task-head');
 const art = document.querySelector('.task-foot');
+const heading = document.querySelector('.title');
 const menu = document.querySelector('.menu');
 const myList = document.querySelector('.menuList');
 const help = document.querySelector('.menuHelp');
@@ -53,8 +54,15 @@ const addInMore = ` <div class="tasks-add">
 <input class="tasks-item due" type="date" data-title="Due" />
 </div>`;
 
+localStorage.setItem('subPageTitle-1', 'To do');
+localStorage.setItem('subPageTitle-2', 'Important');
+localStorage.setItem('subPageTitle-3', 'Normal');
+
 
 const updateMain = function () {
+
+  heading.textContent = 'ToDo-App';
+
   if (localStorage.getItem('mainFlag') && localStorage.getItem('mainFullFlag')) {
     main.innerHTML = '';
     main.style.height = '130vh';
@@ -77,6 +85,9 @@ const updateCheckBox = function () {
 }
 
 const updateSub = function (pageNumber) {
+
+  heading.textContent = localStorage.getItem(`subPageTitle-${pageNumber}`);
+
   if (localStorage.getItem(`subFlag-${pageNumber}`) && localStorage.getItem(`subFullFlag-${pageNumber}`)) {
     main.innerHTML = '';
     main.style.height = '130vh';
@@ -309,6 +320,8 @@ document.addEventListener('keydown',
 
     if (e.key === 'Enter' && taskCount < 11 && pageFlag === 0 && !Number(localStorage.getItem('mainFlag'))) {
       task = document.querySelector('.task-add').value;
+      localStorage.setItem(`subPageTitle-${taskCount}`, task);
+
       if (task !== '+  Add more' && task !== '') {
         main.innerHTML = '';
         localStorage.setItem('mainFlag', '1');
@@ -320,12 +333,14 @@ document.addEventListener('keydown',
       }
     } else if (e.key === 'Enter' && taskCount < 11 && pageFlag === 0) {
       task = document.querySelector('.task-add').value;
+      localStorage.setItem(`subPageTitle-${taskCount}`, task);
 
 
       if (task !== '+  Add more' && task !== '') {
         main.innerHTML = '';
         const addon = `<div class="task click" data-num = ${taskCount}>
       <span><img class="task-img" src="Images/new.png" /></span>${task}</div>`;
+
         ++taskCount;
         if (taskCount % 6 === 0) {
           main.style.height = '160vh';
