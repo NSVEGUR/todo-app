@@ -412,7 +412,7 @@ document.addEventListener('keydown',
 
     }
 
-    if (e.key === 'Escape' && pageFlag == 1) {
+    if (e.key === 'Escape' || e.key === 4 && pageFlag == 1) {
       document.querySelector('.menuBar').classList.add('hidden');
       document.querySelector('.overlay').classList.add('hidden');
 
