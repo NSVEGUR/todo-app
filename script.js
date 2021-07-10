@@ -53,6 +53,7 @@ const addInMore = ` <div class="tasks-add">
 <input class="tasks-item due" type="date" data-title="Due" />
 </div>`;
 
+
 const updateMain = function () {
   if (localStorage.getItem('mainFlag') && localStorage.getItem('mainFullFlag')) {
     main.innerHTML = '';
@@ -70,6 +71,19 @@ const updateMain = function () {
 
 updateMain();
 
+const checkBox = function () {
+  console.log('checkBox')
+  main.addEventListener('click',
+    (e) => {
+      console.log('listened')
+      const clicked = e.target.closest('.cir-check');
+
+      if (!clicked)
+        return;
+
+      console.log(clicked.value);
+    })
+}
 const updateSub = function (pageNumber) {
   if (localStorage.getItem(`subFlag-${pageNumber}`) && localStorage.getItem(`subFullFlag-${pageNumber}`)) {
     main.innerHTML = '';
@@ -392,6 +406,7 @@ document.addEventListener('keydown',
           <img class="del" src="Images/delete.png">
         </div>
       </div>`;
+
         if (dataTabCount % 6 === 0) {
           main.style.height = '160vh';
         }
@@ -412,7 +427,7 @@ document.addEventListener('keydown',
 
     }
 
-    if (e.key === 'Escape' || e.key === 4 && pageFlag == 1) {
+    if (e.key === 'Escape' && pageFlag == 1) {
       document.querySelector('.menuBar').classList.add('hidden');
       document.querySelector('.overlay').classList.add('hidden');
 
@@ -438,6 +453,10 @@ main.addEventListener('click',
     main.style.height = '100vh';
 
     updateSub(whichPage);
+
+    if (Number(localStorage.getItem(`subTabCount-${whichPage}`))) {
+      checkBox();
+    }
 
     pageFlag = 1;
   })
