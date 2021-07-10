@@ -1,5 +1,7 @@
 'use-strict';
 
+
+//Variables used
 const slides = document.querySelectorAll('.slide');
 const dotContainer = document.querySelector('.dots');
 const getStarted = document.querySelector('.getStarted');
@@ -59,6 +61,7 @@ localStorage.setItem('subPageTitle-2', 'Important');
 localStorage.setItem('subPageTitle-3', 'Normal');
 
 
+//Function which updates the main page
 const updateMain = function () {
 
   heading.textContent = 'ToDo-App';
@@ -79,11 +82,15 @@ const updateMain = function () {
 
 updateMain();
 
+
+//updates the changes occured in checkbox and deletions in local storage
 const updateChanges = function () {
   const arr = main.innerHTML.split('<div class="tasks-add">');
   localStorage.setItem(`subPage-${whichPage}`, arr[0])
 }
 
+
+//Updates the sub page based on number 
 const updateSub = function (pageNumber) {
 
   heading.textContent = localStorage.getItem(`subPageTitle-${pageNumber}`);
@@ -449,7 +456,7 @@ document.addEventListener('keydown',
   });
 
 
-
+//eventlistener for tabs in main page
 main.addEventListener('click',
   (e) => {
     const clicked = e.target.closest('.click');
@@ -470,6 +477,8 @@ main.addEventListener('click',
     pageFlag = 1;
   })
 
+
+//Event listener for myList tab in menu
 myList.addEventListener('click',
   () => {
     document.querySelector('.menuBar').classList.add('hidden');
@@ -502,6 +511,8 @@ const checkBox = function () {
 
 checkBox();
 
+
+//Deletion of tab
 const deleteTab = function () {
   main.addEventListener('click',
     (e) => {
