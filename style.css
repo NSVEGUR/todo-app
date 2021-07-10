@@ -414,7 +414,7 @@ main{
 
 .cir-check{
   width: 5%;
-  margin: 0;
+  margin-left: 1rem;
 }
 .circle{
   height: 2rem;

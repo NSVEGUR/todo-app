@@ -71,19 +71,7 @@ const updateMain = function () {
 
 updateMain();
 
-const checkBox = function () {
-  console.log('checkBox')
-  main.addEventListener('click',
-    (e) => {
-      console.log('listened')
-      const clicked = e.target.closest('.cir-check');
 
-      if (!clicked)
-        return;
-
-      console.log(clicked.value);
-    })
-}
 const updateSub = function (pageNumber) {
   if (localStorage.getItem(`subFlag-${pageNumber}`) && localStorage.getItem(`subFullFlag-${pageNumber}`)) {
     main.innerHTML = '';
@@ -355,16 +343,16 @@ document.addEventListener('keydown',
 
       const context = document.querySelector('.context').value;
       const date = document.querySelector('.due').value;
-
       const def = new Date();
-
       const day = `${def.getFullYear()}-${String(def.getMonth() + 1).padStart(2, '0')}-${String(def.getDate()).padStart(2, '0')}`
 
       if (context !== 'Add a task' && context !== '') {
         main.innerHTML = '';
         localStorage.setItem(`subFlag-${whichPage}`, '1');
         newtask = `<div class="tasks forTab" data-sub = "1">
-      <input class="tasks-item cir-check" id="done" type="checkbox" />
+        <div class="tasks-item cir">
+        <button class="circle cir-check" data-val = "0"></button>
+      </div>
       <div class=" tasks-item context-after">
         ${context}
       </div>
@@ -379,24 +367,25 @@ document.addEventListener('keydown',
         main.insertAdjacentHTML("afterbegin", newtask + addInMore + foot);
         localStorage.setItem(`subPage-${whichPage}`, newtask);
 
-        console.log(localStorage.getItem(`subPage-${whichPage}`), 'first');
 
         pageFlag = 1;
       }
     } else if (e.key === 'Enter' && pageFlag === 1 && (Number(localStorage.getItem(`subTabCount-${whichPage}`)) < 11)) {
+
 
       const context = document.querySelector('.context').value;
       const date = document.querySelector('.due').value;
       const def = new Date();
       const day = `${def.getFullYear()}-${String(def.getMonth() + 1).padStart(2, '0')}-${String(def.getDate()).padStart(2, '0')}`
 
-
       if (context !== 'Add a task' && context !== '') {
         localStorage.setItem(`subTabCount-${whichPage}`, `${tabCount()}`);
         const dataTabCount = Number(localStorage.getItem(`subTabCount-${whichPage}`)) + 1;
         main.innerHTML = '';
         newtask = `<div class="tasks forTab" data-sub = "${String(dataTabCount)}">
-        <input class="tasks-item cir-check" id="done" type="checkbox" />
+        <div class="tasks-item cir">
+          <button class="circle cir-check" data-val = "0"></button>
+        </div>
         <div class=" tasks-item context-after">
           ${context}
         </div>
@@ -406,6 +395,7 @@ document.addEventListener('keydown',
           <img class="del" src="Images/delete.png">
         </div>
       </div>`;
+
 
         if (dataTabCount % 6 === 0) {
           main.style.height = '160vh';
@@ -420,8 +410,8 @@ document.addEventListener('keydown',
           main.insertAdjacentHTML("afterbegin", localStorage.getItem(`subPage-${whichPage}`) + newtask + addInMore + foot);
           localStorage.setItem(`subPage-${whichPage}`, localStorage.getItem(`subPage-${whichPage}`) + newtask);
         }
+
       }
-      console.log(localStorage.getItem(`subPage-${whichPage}`), 'second');
 
       pageFlag = 1;
 
@@ -454,9 +444,7 @@ main.addEventListener('click',
 
     updateSub(whichPage);
 
-    if (Number(localStorage.getItem(`subTabCount-${whichPage}`))) {
-      checkBox();
-    }
+
 
     pageFlag = 1;
   })
@@ -471,3 +459,23 @@ myList.addEventListener('click',
     pageFlag = 0;
   })
 
+//click on check box
+const checkBox = function () {
+  main.addEventListener('click',
+    (e) => {
+      const clicked = e.target.closest('button');
+      if (!clicked)
+        return;
+      if (clicked.dataset.val === '0') {
+        clicked.dataset.val = '1';
+        clicked.parentElement.parentElement.querySelector('.context-after').style.textDecoration = 'line-through';
+        clicked.style.background = 'black';
+      } else {
+        clicked.dataset.val = '0';
+        clicked.parentElement.parentElement.querySelector('.context-after').style.textDecoration = 'none';
+        clicked.style.background = 'transparent';
+      }
+    })
+}
+
+checkBox();
