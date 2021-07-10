@@ -71,6 +71,10 @@ const updateMain = function () {
 
 updateMain();
 
+const updateCheckBox = function () {
+  const arr = main.innerHTML.split('<div class="tasks-add">');
+  localStorage.setItem(`subPage-${whichPage}`, arr[0])
+}
 
 const updateSub = function (pageNumber) {
   if (localStorage.getItem(`subFlag-${pageNumber}`) && localStorage.getItem(`subFullFlag-${pageNumber}`)) {
@@ -411,6 +415,8 @@ document.addEventListener('keydown',
           localStorage.setItem(`subPage-${whichPage}`, localStorage.getItem(`subPage-${whichPage}`) + newtask);
         }
 
+        updateCheckBox();
+
       }
 
       pageFlag = 1;
@@ -475,6 +481,7 @@ const checkBox = function () {
         clicked.parentElement.parentElement.querySelector('.context-after').style.textDecoration = 'none';
         clicked.style.background = 'transparent';
       }
+      updateCheckBox();
     })
 }
 
