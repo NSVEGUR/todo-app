@@ -79,7 +79,7 @@ const updateMain = function () {
 
 updateMain();
 
-const updateCheckBox = function () {
+const updateChanges = function () {
   const arr = main.innerHTML.split('<div class="tasks-add">');
   localStorage.setItem(`subPage-${whichPage}`, arr[0])
 }
@@ -430,7 +430,7 @@ document.addEventListener('keydown',
           localStorage.setItem(`subPage-${whichPage}`, localStorage.getItem(`subPage-${whichPage}`) + newtask);
         }
 
-        updateCheckBox();
+        updateChanges();
 
       }
 
@@ -496,8 +496,34 @@ const checkBox = function () {
         clicked.parentElement.parentElement.querySelector('.context-after').style.textDecoration = 'none';
         clicked.style.background = 'transparent';
       }
-      updateCheckBox();
+      updateChanges();
     })
 }
 
 checkBox();
+
+const deleteTab = function () {
+  main.addEventListener('click',
+    (e) => {
+      const clicked = e.target.closest('.del');
+      if (!clicked)
+        return;
+      console.log(main.innerHTML)
+      clicked.parentElement.parentElement.remove();
+      let tabs = document.querySelectorAll('.forTab');
+      tabs.forEach((val, index) => {
+        val.dataset.sub = index + 1;
+      })
+
+      localStorage.setItem(`subTabCount-${whichPage}`, `${tabCount()}`);
+
+      updateChanges();
+
+      if (tabCount() < 11)
+        localStorage.setItem(`subFullFlag-${whichPage}`, '');
+
+      updateSub(whichPage);
+    })
+}
+
+deleteTab();
