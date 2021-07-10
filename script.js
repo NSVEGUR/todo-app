@@ -9,7 +9,7 @@ const getStarted = document.querySelector('.getStarted');
 const getStartedBtn = document.querySelector('.head-start');
 const helpStarted = document.querySelector('.help');
 const helpStartedBtn = document.querySelector('.help-start');
-const forAutoplay = document.querySelectorAll('.help--vid')
+const vid = document.querySelector('.help--vid')
 const main = document.querySelector('main');
 const right = document.querySelector('.right');
 const left = document.querySelector('.left');
@@ -255,51 +255,52 @@ const prevSlide = function () {
 right.addEventListener('click', nextSlide);
 left.addEventListener('click', prevSlide);
 
-const changesInHelp = function (slide) {
+// const changesInHelp = function (slide) {
 
-  helpSlides.forEach(
-    (s, i) => {
-      s.style.transform = `translateX(${100 * (i - slide)}%)`;
-    }
-  );
-  forAutoplay.forEach(
-    (s) => {
-      s.load();
-    }
-  )
-}
+//   helpSlides.forEach(
+//     (s, i) => {
+//       s.style.transform = `translateX(${100 * (i - slide)}%)`;
+//     }
+//   );
+//   forAutoplay.forEach(
+//     (s) => {
+//       s.load();
+//     }
+//   )
+// }
 
 
 
-const moveHelpSlides = function () {
-  let currentHelpSlide = 0;
-  let reverseFlag = 0;
-  helpSlideInterval = setInterval(() => {
-    if (currentHelpSlide === 0) {
-      ++currentHelpSlide;
-      changesInHelp(currentHelpSlide);
-    }
-    else if (currentHelpSlide === 1 && !reverseFlag) {
-      ++currentHelpSlide;
-      changesInHelp(currentHelpSlide);
-      reverseFlag = 1;
-    } else if (currentHelpSlide === 1 && reverseFlag) {
-      --currentHelpSlide;
-      changesInHelp(currentHelpSlide);
-      reverseFlag = 0;
-    } else if (currentHelpSlide === 2) {
-      --currentHelpSlide;
-      changesInHelp(currentHelpSlide);
-    }
-  }, 5000);
-}
+// const moveHelpSlides = function () {
+//   let currentHelpSlide = 0;
+//   let reverseFlag = 0;
+//   helpSlideInterval = setInterval(() => {
+//     if (currentHelpSlide === 0) {
+//       ++currentHelpSlide;
+//       changesInHelp(currentHelpSlide);
+//     }
+//     else if (currentHelpSlide === 1 && !reverseFlag) {
+//       ++currentHelpSlide;
+//       changesInHelp(currentHelpSlide);
+//       reverseFlag = 1;
+//     } else if (currentHelpSlide === 1 && reverseFlag) {
+//       --currentHelpSlide;
+//       changesInHelp(currentHelpSlide);
+//       reverseFlag = 0;
+//     } else if (currentHelpSlide === 2) {
+//       --currentHelpSlide;
+//       changesInHelp(currentHelpSlide);
+//     }
+//   }, 5000);
+// }
 
 //getting Started
 getStartedBtn.addEventListener('click',
   () => {
     getStarted.style.display = 'none';
     document.querySelector('.help').classList.remove('hide-help');
-    moveHelpSlides();
+    vid.load();
+    // moveHelpSlides();
   });
 
 helpStartedBtn.addEventListener('click',
@@ -308,7 +309,7 @@ helpStartedBtn.addEventListener('click',
     main.classList.remove('display-content');
     document.querySelector('.task-head').classList.remove('display-content');
     localStorage.isVisited = 'true';
-    clearInterval(helpSlideInterval);
+    // clearInterval(helpSlideInterval);
   })
 
 //Theme Changing
@@ -600,9 +601,9 @@ help.addEventListener('click',
     main.classList.add('display-content');
     document.querySelector('.task-head').classList.add('display-content');
 
-    moveHelpSlides();
+    // moveHelpSlides();
 
-
+    vid.load();
 
     updateMain();
 
