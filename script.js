@@ -411,6 +411,15 @@ document.addEventListener('keydown',
       pageFlag = 1;
 
     }
+
+    if (e.key === 'Escape' && pageFlag == 1) {
+      document.querySelector('.menuBar').classList.add('hidden');
+      document.querySelector('.overlay').classList.add('hidden');
+
+      updateMain();
+
+      pageFlag = 0;
+    }
   });
 
 
