@@ -2,6 +2,8 @@
 
 
 //Variables used
+const backsOne = document.querySelectorAll('.back-1');
+const backsTwo = document.querySelectorAll('.back-2');
 const slides = document.querySelectorAll('.slide');
 const helpSlides = document.querySelectorAll('.slide-help');
 const dotContainer = document.querySelector('.dots');
@@ -20,10 +22,14 @@ const heading = document.querySelector('.title');
 const menu = document.querySelector('.menu');
 const myList = document.querySelector('.menuList');
 const help = document.querySelector('.menuHelp');
-const colorOne = 'linear-gradient(120deg, #a1c4fd 0%, #c2e9fb 100%)';
-const colorTwo = 'linear-gradient(to right, #ffc3a0 0%, #ffafbd 100%)';
-const colorThree = 'linear-gradient(to right, #43e97b 0%, #38f9d7 100%)';
-const colorFour = 'linear-gradient(120deg, #fdcbf1 0%, #fdcbf1 1%, #e6dee9 100%)';
+const colorOneOne = 'rgba(62, 133, 243, 1)';
+const colorOneTwo = 'rgba(17, 115, 183, 1)';
+const colorTwoOne = 'rgba(111, 104, 114, 1)';
+const colorTwoTwo = 'rgba(77, 70, 82, 1)';
+const colorThreeOne = 'rgba(183, 119, 217, 1)';
+const colorThreeTwo = 'rgba(136, 5, 226, 1)';
+const colorFourOne = 'rgba(243, 106, 62, 1)';
+const colorFourTwo = 'rgba(255, 179, 11, 1)';
 let themeCount = 1;
 let whichPage = 0;
 let helpSlideInterval = '';
@@ -114,25 +120,28 @@ const updateSub = function (pageNumber) {
 }
 
 //themeChanger Function
-const themeSwticher = function (color) {
-  main.style.background = color;
-  title.style.background = color;
-  art.style.background = color;
+const themeSwticher = function (colorOne, colorTwo) {
+  backsOne.forEach((e) => {
+    e.setAttribute('stop-color', colorOne)
+  })
+  backsTwo.forEach((e) => {
+    e.setAttribute('stop-color', colorTwo)
+  })
 }
 
 //restore theme
 const themeStorage = function () {
   switch (Number(localStorage.getItem('themeCount')) - 1) {
-    case 1: themeSwticher(colorTwo);
+    case 1: themeSwticher(colorTwoOne, colorTwoTwo);
       ++themeCount;
       break;
-    case 2: themeSwticher(colorThree);
+    case 2: themeSwticher(colorThreeOne, colorThreeTwo);
       ++themeCount;
       break;
-    case 3: themeSwticher(colorFour);
+    case 3: themeSwticher(colorFourOne, colorFourTwo);
       ++themeCount;
       break;
-    case 4: themeSwticher(colorOne);
+    case 4: themeSwticher(colorOneOne, colorOneTwo);
       themeCount = 1;
       break;
     default: break;
@@ -143,7 +152,7 @@ themeStorage();
 
 let pageFlag = 0;
 
-art.style.background = colorOne;
+// art.style.background = colorOne;
 
 let currentSlide = 0;
 
@@ -317,16 +326,16 @@ helpStartedBtn.addEventListener('click',
 theme.addEventListener('click',
   () => {
     switch (themeCount) {
-      case 1: themeSwticher(colorTwo);
+      case 1: themeSwticher(colorTwoOne, colorTwoTwo);
         ++themeCount;
         break;
-      case 2: themeSwticher(colorThree);
+      case 2: themeSwticher(colorThreeOne, colorThreeTwo);
         ++themeCount;
         break;
-      case 3: themeSwticher(colorFour);
+      case 3: themeSwticher(colorFourOne, colorFourTwo);
         ++themeCount;
         break;
-      case 4: themeSwticher(colorOne);
+      case 4: themeSwticher(colorOneOne, colorOneTwo);
         themeCount = 1;
         break;
       default: break;

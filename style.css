@@ -70,9 +70,10 @@ animation: animate 10s linear forwards;
 .getStarted{
   position: absolute;
   inset: 0;
-  background: linear-gradient(120deg, #a1c4fd 0%, #c2e9fb 100%);
+  background: transparent;
   width: 100%;
   height: 100vh;
+  z-index: 30;
 }
 .slides {
   max-width: 100%;
@@ -199,7 +200,8 @@ button:focus{
 .help{
   position: absolute;
   inset: 0;
-  background: linear-gradient(120deg, #a1c4fd 0%, #c2e9fb 100%);
+  z-index: 30;
+  background: transparent;
   height: 100vh;
 }
 .slides-help{
@@ -225,6 +227,7 @@ button:focus{
   margin-top: 5rem;
   height: 100%;
   width: 100%;
+  z-index: 30;
 }
 
 .help-start-dev{
@@ -251,18 +254,32 @@ button:focus{
 main{
   position: absolute;
   inset: 4;
+  margin-top: 7rem;
   width: 100vw;
   height: 100vh;
-  z-index: 10;
-  background: linear-gradient(120deg, #a1c4fd 0%, #c2e9fb 100%);
+  z-index: 30;
+  background: transparent;
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
   align-items: center;
 }
 
+.back{
+  position: absolute;
+  inset: 0;
+  width: 100vw;
+  height: 100%;
+  z-index: 20;
+}
+.back-hide{
+  display: none;
+}
 .task-head{
-  background: linear-gradient(120deg, #a1c4fd 0%, #c2e9fb 100%);
+  position: absolute;
+  inset: 0;
+  background: transparent;
+  z-index: 500;
   padding: 2rem 2rem;
   font-family: 'Comfortaa', cursive;
   font-size: 3rem;
@@ -330,6 +347,7 @@ main{
   border: double 1px rgb(107, 102, 102);
   box-shadow: 2px 2px 3px black;
   cursor: pointer;
+  z-index: 100;
 }
 
 
@@ -349,8 +367,9 @@ main{
 .menuBar{
   position: absolute;
   inset: 0;
+  margin-top: 10rem;
   transform: translate(25%, 200%);
-  z-index: 20;
+  z-index: 200;
 }
 
 .menuItem{
@@ -381,9 +400,9 @@ main{
   position: absolute;
   inset: 0;
   width: 100%;
-  height: 107vh;
+  height: 100%;
   background: rgba(0,0,0,0.7);
-  z-index: 15;
+  z-index: 180;
 }
 .hidden{
   display:none;
@@ -409,6 +428,7 @@ main{
   border: double 1px rgb(107, 102, 102);
   box-shadow: 2px 2px 3px black;
   cursor: pointer;
+  z-index: 100;
 }
 
 .tasks-add{
