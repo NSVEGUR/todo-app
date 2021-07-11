@@ -199,10 +199,7 @@ button:focus{
 .help{
   position: absolute;
   inset: 0;
-  background-image: url(Images/wave-1.svg);
-  background-repeat: no-repeat;
-  background-size: cover cover;
-  background-position: top;
+  background: linear-gradient(120deg, #a1c4fd 0%, #c2e9fb 100%);
   height: 100vh;
 }
 .slides-help{
@@ -257,24 +254,19 @@ main{
   width: 100vw;
   height: 100vh;
   z-index: 10;
-  background-image: url(Images/wave-1.svg);
-  background-repeat: no-repeat;
-  background-size: cover cover;
-  background-position: top;
+  background: linear-gradient(120deg, #a1c4fd 0%, #c2e9fb 100%);
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
   align-items: center;
-  transition: background-image ease-in-out 1s;
 }
 
 .task-head{
-  background: #0099ff;
+  background: linear-gradient(120deg, #a1c4fd 0%, #c2e9fb 100%);
   padding: 2rem 2rem;
   font-family: 'Comfortaa', cursive;
   font-size: 3rem;
   font-weight: 900;
-  transition: background ease-in-out 1s;
 }
 
 .links{
@@ -351,7 +343,7 @@ main{
   backdrop-filter: blur(1px);
   border: double 1px rgb(175, 170, 170);
   box-shadow: 2px 2px 3px rgb(112, 111, 111);
-  color:rgb(0, 0, 0);
+  color:rgb(179, 175, 175);
 }
 
 .menuBar{
@@ -437,7 +429,7 @@ main{
   backdrop-filter: blur(1px);
   border: double 1px rgb(175, 170, 170);
   box-shadow: 2px 2px 3px rgb(112, 111, 111);
-  color:rgb(0, 0, 0);
+  color:rgb(179, 175, 175);
   border-radius: 0.5rem;
   cursor: pointer;
 }
@@ -456,7 +448,7 @@ main{
   font-weight: bold;
   background: transparent;
   border: none;
-  color:rgb(7, 7, 7);
+  color:rgb(179, 175, 175);
   margin: 0;
 }
 

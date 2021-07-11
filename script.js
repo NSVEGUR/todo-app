@@ -20,14 +20,10 @@ const heading = document.querySelector('.title');
 const menu = document.querySelector('.menu');
 const myList = document.querySelector('.menuList');
 const help = document.querySelector('.menuHelp');
-const colorOne = 'url(Images/wave-1.svg)';
-const colorOneTitle = '#0099ff';
-const colorTwo = 'url(Images/wave-2.svg)';
-const colorTwoTitle = '#5B5858';
-const colorThree = 'url(Images/wave-3.svg)';
-const colorThreeTitle = '#BD38D9';
-const colorFour = 'url(Images/wave-4.svg)';
-const colorFourTitle = '#FF8600';
+const colorOne = 'linear-gradient(120deg, #a1c4fd 0%, #c2e9fb 100%)';
+const colorTwo = 'linear-gradient(to right, #ffc3a0 0%, #ffafbd 100%)';
+const colorThree = 'linear-gradient(to right, #43e97b 0%, #38f9d7 100%)';
+const colorFour = 'linear-gradient(120deg, #fdcbf1 0%, #fdcbf1 1%, #e6dee9 100%)';
 let themeCount = 1;
 let whichPage = 0;
 let helpSlideInterval = '';
@@ -118,24 +114,25 @@ const updateSub = function (pageNumber) {
 }
 
 //themeChanger Function
-const themeSwticher = function (color, headColor) {
-  main.style.backgroundImage = color;
-  title.style.background = headColor;
+const themeSwticher = function (color) {
+  main.style.background = color;
+  title.style.background = color;
+  art.style.background = color;
 }
 
 //restore theme
 const themeStorage = function () {
   switch (Number(localStorage.getItem('themeCount')) - 1) {
-    case 1: themeSwticher(colorTwo, colorTwoTitle);
+    case 1: themeSwticher(colorTwo);
       ++themeCount;
       break;
-    case 2: themeSwticher(colorThree, colorThreeTitle);
+    case 2: themeSwticher(colorThree);
       ++themeCount;
       break;
-    case 3: themeSwticher(colorFour, colorFourTitle);
+    case 3: themeSwticher(colorFour);
       ++themeCount;
       break;
-    case 4: themeSwticher(colorOne, colorOneTitle);
+    case 4: themeSwticher(colorOne);
       themeCount = 1;
       break;
     default: break;
@@ -146,6 +143,7 @@ themeStorage();
 
 let pageFlag = 0;
 
+art.style.background = colorOne;
 
 let currentSlide = 0;
 
@@ -319,16 +317,16 @@ helpStartedBtn.addEventListener('click',
 theme.addEventListener('click',
   () => {
     switch (themeCount) {
-      case 1: themeSwticher(colorTwo, colorTwoTitle);
+      case 1: themeSwticher(colorTwo);
         ++themeCount;
         break;
-      case 2: themeSwticher(colorThree, colorThreeTitle);
+      case 2: themeSwticher(colorThree);
         ++themeCount;
         break;
-      case 3: themeSwticher(colorFour, colorFourTitle);
+      case 3: themeSwticher(colorFour);
         ++themeCount;
         break;
-      case 4: themeSwticher(colorOne, colorOneTitle);
+      case 4: themeSwticher(colorOne);
         themeCount = 1;
         break;
       default: break;
