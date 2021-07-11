@@ -34,11 +34,12 @@ let themeCount = 1;
 let whichPage = 0;
 let helpSlideInterval = '';
 
-if (screen.orientation.type === 'portrait-primary') {
-  document.querySelector('svg').style.height = '60vh';
-} else {
-  document.querySelector('svg').style.height = '';
-}
+// if (screen.orientation.type === 'portrait-primary') {
+//   document.querySelector('svg').style.height = '60vh';
+//   main.style.height = '100vh';
+// } else {
+//   document.querySelector('svg').style.height = '';
+// }
 
 const foot = `<h1 class="task-foot">Made with ❤ by NSVegur</h1>`;
 const addMore = `<input class="task task-add" type="text" value="+  Add more" onfocus='this.value = ""' />`;
