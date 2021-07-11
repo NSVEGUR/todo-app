@@ -5,4 +5,3 @@
 especially with a cool & simple UI design
 
 ## ✍🏽Author: NSVEGUR
-🔰Still in building stage
