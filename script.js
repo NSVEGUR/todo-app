@@ -119,7 +119,8 @@ const updateSub = function (pageNumber) {
 
 //themeChanger Function
 const themeSwticher = function (color, headColor) {
-  main.style.backgroundImage = color;
+  const timeStamp = new Date().getTime();
+  main.style.backgroundImage = color.split(')')[0] + '?t=' + timeStamp + ')';
   title.style.background = headColor;
 }
 
