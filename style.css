@@ -563,3 +563,7 @@ main{
 .hide{
   display: none;
 }
+
+stop{
+  transition: stop-color linear 1s;
+}
