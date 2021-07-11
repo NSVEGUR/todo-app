@@ -70,7 +70,10 @@ animation: animate 10s linear forwards;
 .getStarted{
   position: absolute;
   inset: 0;
-  background: linear-gradient(120deg, #a1c4fd 0%, #c2e9fb 100%);
+  background-image: url(Images/wave-1.svg);
+  background-repeat: no-repeat;
+  background-size: cover cover;
+  background-position: top;
   width: 100%;
   height: 100vh;
 }
@@ -199,7 +202,10 @@ button:focus{
 .help{
   position: absolute;
   inset: 0;
-  background: linear-gradient(120deg, #a1c4fd 0%, #c2e9fb 100%);
+  background-image: url(Images/wave-1.svg);
+  background-repeat: no-repeat;
+  background-size: cover cover;
+  background-position: top;
   height: 100vh;
 }
 .slides-help{
