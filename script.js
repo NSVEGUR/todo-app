@@ -23,6 +23,7 @@ const heading = document.querySelector('.title');
 const menu = document.querySelector('.menu');
 const myList = document.querySelector('.menuList');
 const help = document.querySelector('.menuHelp');
+const creator = document.querySelector('.menuCreator');
 const colorOneOne = 'rgba(62, 133, 243, 1)';
 const colorOneTwo = 'rgba(17, 115, 183, 1)';
 const colorTwoOne = 'rgba(111, 104, 114, 1)';
@@ -443,6 +444,9 @@ document.addEventListener('keydown',
         ++taskCount;
         main.insertAdjacentHTML("afterbegin", html + addMore + foot);
         localStorage.setItem('mainPage', html);
+
+        Number(localStorage.getItem('lightDarkFlag')) ? lightDark(1) : lightDark(0);
+
       }
     } else if (e.key === 'Enter' && taskCount < 11 && pageFlag === 0) {
       task = document.querySelector('.task-add').value;
@@ -499,6 +503,9 @@ document.addEventListener('keydown',
 
         main.insertAdjacentHTML("afterbegin", newtask + addInMore + foot);
         localStorage.setItem(`subPage-${whichPage}`, newtask);
+
+        Number(localStorage.getItem('lightDarkFlag')) ? lightDark(1) : lightDark(0);
+
 
 
         pageFlag = 1;
@@ -663,3 +670,7 @@ help.addEventListener('click',
 
     pageFlag = 0;
   })
+
+creator.addEventListener('click', () => {
+  window.open('https://nsvegur.github.io/Blog/');
+})
