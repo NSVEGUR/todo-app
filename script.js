@@ -16,6 +16,7 @@ const main = document.querySelector('main');
 const right = document.querySelector('.right');
 const left = document.querySelector('.left');
 const theme = document.querySelector('.theme');
+const lightDarkBtn = document.querySelector('.light-dark');
 const title = document.querySelector('.task-head');
 const art = document.querySelector('.task-foot');
 const heading = document.querySelector('.title');
@@ -33,6 +34,25 @@ const colorFourTwo = 'rgba(255, 179, 11, 1)';
 let themeCount = 1;
 let whichPage = 0;
 let helpSlideInterval = '';
+
+
+const lightDark = function (lightDarkFlag) {
+  if (lightDarkFlag) {
+    document.querySelector('body').style.color = '#ffffff';
+    document.querySelectorAll('.task').forEach((e) => e.style.color = '#ffffff')
+    document.querySelectorAll('.tasks-item').forEach((e) => e.style.color = '#ffffff')
+    main.style.background = '#121212';
+    lightDarkBtn.textContent = '✹';
+    localStorage.setItem('lightDarkFlag', '1');
+  } else {
+    document.querySelector('body').style.color = '#000000';
+    document.querySelectorAll('.task').forEach((e) => e.style.color = '#000000')
+    document.querySelectorAll('.tasks-item').forEach((e) => e.style.color = '#000000')
+    main.style.background = '#ffffff';
+    lightDarkBtn.textContent = '☾';
+    localStorage.setItem('lightDarkFlag', '0');
+  }
+}
 
 // if (screen.orientation.type === 'portrait-primary') {
 //   document.querySelector('svg').style.height = '60vh';
@@ -85,7 +105,6 @@ const updateMain = function () {
 
   if (localStorage.getItem('mainFlag') && localStorage.getItem('mainFullFlag')) {
     main.innerHTML = '';
-    main.style.height = '130vh';
     main.insertAdjacentHTML("afterbegin", localStorage.getItem('mainPage') + tempHidden + foot);
   }
   else if (localStorage.getItem('mainFlag')) {
@@ -95,6 +114,9 @@ const updateMain = function () {
     main.innerHTML = '';
     main.insertAdjacentHTML("afterbegin", html + addMore + tempHidden + foot);
   }
+
+  Number(localStorage.getItem('lightDarkFlag')) ? lightDark(1) : lightDark(0);
+
 }
 
 updateMain();
@@ -102,8 +124,12 @@ updateMain();
 
 //updates the changes occured in checkbox and deletions in local storage
 const updateChanges = function () {
+
   const arr = main.innerHTML.split('<div class="tasks-add">');
-  localStorage.setItem(`subPage-${whichPage}`, arr[0])
+  localStorage.setItem(`subPage-${whichPage}`, arr[0]);
+
+  Number(localStorage.getItem('lightDarkFlag')) ? lightDark(1) : lightDark(0);
+
 }
 
 
@@ -112,9 +138,10 @@ const updateSub = function (pageNumber) {
 
   heading.textContent = localStorage.getItem(`subPageTitle-${pageNumber}`);
 
+
+
   if (localStorage.getItem(`subFlag-${pageNumber}`) && localStorage.getItem(`subFullFlag-${pageNumber}`)) {
     main.innerHTML = '';
-    main.style.height = '130vh';
     main.insertAdjacentHTML("afterbegin", localStorage.getItem(`subPage-${pageNumber}`) + tempHidden + foot);
   }
   else if (localStorage.getItem(`subFlag-${pageNumber}`)) {
@@ -124,6 +151,9 @@ const updateSub = function (pageNumber) {
     main.innerHTML = '';
     main.insertAdjacentHTML("afterbegin", addInMore + tempHidden + foot);
   }
+
+  Number(localStorage.getItem('lightDarkFlag')) ? lightDark(1) : lightDark(0);
+
 }
 
 //themeChanger Function
@@ -160,6 +190,13 @@ themeStorage();
 let pageFlag = 0;
 
 // art.style.background = colorOne;
+
+
+
+lightDarkBtn.addEventListener('click',
+  () => {
+    Number(localStorage.getItem('lightDarkFlag')) ? lightDark(0) : lightDark(1);
+  })
 
 let currentSlide = 0;
 
@@ -222,6 +259,7 @@ if (localStorage.isVisited) {
   getStarted.style.display = 'none';
   main.classList.remove('display-content');
   document.querySelector('.task-head').classList.remove('display-content');
+  Number(localStorage.getItem('lightDarkFlag')) ? lightDark(1) : lightDark(0);
 }
 //creating dots
 
@@ -325,6 +363,7 @@ helpStartedBtn.addEventListener('click',
     main.classList.remove('display-content');
     document.querySelector('.task-head').classList.remove('display-content');
     localStorage.isVisited = 'true';
+
     // clearInterval(helpSlideInterval);
   })
 
@@ -417,10 +456,8 @@ document.addEventListener('keydown',
 
         ++taskCount;
         if (taskCount % 6 === 0) {
-          main.style.height = '160vh';
         }
         if (taskCount === 11) {
-          main.style.height = '130vh';
           localStorage.setItem('mainFullFlag', '1');
           main.insertAdjacentHTML("afterbegin", localStorage.getItem('mainPage') + addon + foot);
           localStorage.setItem('mainPage', localStorage.getItem('mainPage') + addon);
@@ -430,6 +467,9 @@ document.addEventListener('keydown',
           localStorage.setItem('mainPage', localStorage.getItem('mainPage') + addon);
         }
       }
+
+      Number(localStorage.getItem('lightDarkFlag')) ? lightDark(1) : lightDark(0);
+
     }
 
     if (e.key === 'Enter' && pageFlag === 1 && !Number(localStorage.getItem(`subFlag-${whichPage}`))) {
@@ -491,10 +531,8 @@ document.addEventListener('keydown',
 
 
         if (dataTabCount % 6 === 0) {
-          main.style.height = '160vh';
         }
         if (dataTabCount === 11) {
-          main.style.height = '130vh';
           localStorage.setItem(`subFullFlag-${whichPage}`, '1');
           main.insertAdjacentHTML("afterbegin", localStorage.getItem(`subPage-${whichPage}`) + newtask + foot);
           localStorage.setItem(`subPage-${whichPage}`, localStorage.getItem(`subPage-${whichPage}`) + newtask);
@@ -535,7 +573,7 @@ main.addEventListener('click',
     whichPage = clicked.dataset.num;
 
     main.innerHTML = '';
-    main.style.height = '100vh';
+    main.style.height = '160vh';
 
     updateSub(whichPage);
 

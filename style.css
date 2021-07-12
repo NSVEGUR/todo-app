@@ -256,13 +256,13 @@ main{
   inset: 4;
   margin-top: 7rem;
   width: 100vw;
-  height: 100vh;
-  z-index: 30;
+  height: 200vh;
   background: transparent;
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
   align-items: center;
+  transition: all linear 1s;
 }
 
 .back{
@@ -284,6 +284,7 @@ main{
   font-family: 'Comfortaa', cursive;
   font-size: 3rem;
   font-weight: 900;
+  transition: all linear 1s;
 }
 
 .links{
@@ -293,7 +294,7 @@ main{
   list-style: none;
 }
 
-.theme{
+.theme, .light-dark{
   height: 3rem;
   width: 3rem;
   border-radius: 50%;
@@ -348,6 +349,11 @@ main{
   box-shadow: 2px 2px 3px black;
   cursor: pointer;
   z-index: 100;
+  transition: all linear 1s;
+}
+
+.tasks-item{
+  transition: all linear 1s;
 }
 
 
@@ -428,8 +434,10 @@ main{
   border: double 1px rgb(107, 102, 102);
   box-shadow: 2px 2px 3px black;
   cursor: pointer;
-  z-index: 100;
+  z-index: 200;
 }
+
+
 
 .tasks-add{
   width: 96%;
@@ -452,6 +460,7 @@ main{
   color:rgb(179, 175, 175);
   border-radius: 0.5rem;
   cursor: pointer;
+  z-index: 200;
 }
 
 
@@ -567,3 +576,4 @@ main{
 stop{
   transition: stop-color linear 1s;
 }
+
