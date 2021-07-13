@@ -168,7 +168,7 @@ const themeSwticher = function (colorOne, colorTwo) {
   })
 
   metaThemeColor.setAttribute('content', colorOne);
-  console.log(metaThemeColor.getAttribute('content'))
+  // console.log(metaThemeColor.getAttribute('content'))
 }
 
 //restore theme
