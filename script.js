@@ -4,6 +4,7 @@
 //Variables used
 const backsOne = document.querySelectorAll('.back-1');
 const backsTwo = document.querySelectorAll('.back-2');
+const metaThemeColor = document.querySelector("meta[name=theme-color]");
 const slides = document.querySelectorAll('.slide');
 const helpSlides = document.querySelectorAll('.slide-help');
 const dotContainer = document.querySelector('.dots');
@@ -165,6 +166,9 @@ const themeSwticher = function (colorOne, colorTwo) {
   backsTwo.forEach((e) => {
     e.setAttribute('stop-color', colorTwo)
   })
+
+  metaThemeColor.setAttribute('content', colorOne);
+  console.log(metaThemeColor.getAttribute('content'))
 }
 
 //restore theme
