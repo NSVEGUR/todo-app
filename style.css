@@ -576,14 +576,22 @@ stop{
 }
 
 @media  screen and (orientation: portrait) {
-  .task, .context-after{
+  .task, .context-after, .context{
     font-size: 1.5rem;
   }
   .task-img, .del{
     height: 1.5rem;
   }
-  .cir-check{
+  .cir-check, .circle{
     width: 1.5rem;
     height: 1.5rem;
+  }
+  .circle{
+    margin-right: 0.3rem;
+  }
+
+  .cir{
+    margin-bottom: 1.5rem;
+    margin-left: 0.3rem;
   }
 }
