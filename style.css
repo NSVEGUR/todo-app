@@ -102,7 +102,7 @@ animation: animate 10s linear forwards;
   align-content: center;
   justify-content: center;
   /* THIS creates the animation! */
-  transition: transform ease-in-out 1.3s;
+  transition: transform ease-in-out 2s;
 }
 
 .getStarted--img{
@@ -593,5 +593,26 @@ stop{
   .cir{
     margin-bottom: 1.5rem;
     margin-left: 0.3rem;
+  }
+  .getStarted--img{
+    width: 70%;
+  }
+  .menuItem{
+    height: 4rem;
+    font-size: 2rem;
+    padding: 0.5rem 0 0.5rem 0;
+  }
+}
+
+@media screen and (orientation: landscape){
+
+  .slides{
+    height: 70vh;
+  }
+  .slide{
+    height: 60vh;
+  }
+  .getStarted--img{
+    height: 60vh;
   }
 }
