@@ -64,7 +64,7 @@ const lightDark = function (lightDarkFlag) {
 // }
 
 const foot = `<h1 class="task-foot">Made with ❤ by NSVegur</h1>`;
-const addMore = `<input class="task task-add" type="text" value="+  Add more" onfocus='this.value = ""' />`;
+const addMore = `<input class="task task-add" type="text" placeholder="+  Add more" />`;
 const tempHidden = `<div class="tasks tasks-1 hide">
 <input class="tasks-item cir-check" id="done" type="checkbox" />
 <div class=" tasks-item context-after">
@@ -91,7 +91,7 @@ const addInMore = ` <div class="tasks-add">
 <div class="tasks-item cir">
   <button class="circle"></button>
 </div>
-<input class="tasks-item context" type="text" value="Add a task" onfocus='this.value = ""' />
+<input class="tasks-item context" type="text" placeholder="Add a task"/>
 <input class="tasks-item due" type="date" data-title="Due" />
 </div>`;
 
